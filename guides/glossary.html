@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Glossary | Product Security in One Hour</title>
+<meta name="description" content="Plain-language definitions of the medical device product security terms used in the course, and where to read further.">
+<style>
+.glist{column-count:2;column-gap:16pt;column-rule:1px solid var(--line);}
+.gt{break-inside:avoid;margin:0 0 3.8pt;font-size:8.1pt;line-height:1.3;}
+.gt b{color:var(--ink);font-weight:800;}
+.gt b::after{content:" ·";color:var(--dim);font-weight:600;}
+.gnote{font-size:8pt;color:var(--muted);margin:0 0 8pt;}
+.frl{display:grid;grid-template-columns:1fr 1fr;gap:6pt 16pt;}
+.frl p{margin:0;font-size:8.2pt;line-height:1.32;padding:5pt 7pt;border:1px solid var(--line);border-radius:6px;}
+.frl b{display:block;color:var(--ink);font-weight:800;}
+.frl .mono{color:var(--accent);font-size:7.4pt;white-space:nowrap;}
+@media screen and (max-width:860px){.frl{grid-template-columns:1fr;}}
+@media screen and (max-width:860px){.glist{column-count:1;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a href="../guides.html">← All guides</a>
+  <span class="tb-title">Glossary</span>
+  <span class="tb-actions"><a class="tb-btn" href="pdf/glossary.pdf" download>Download PDF</a><button class="tb-btn" type="button" onclick="window.print()">Print</button></span>
+</div>
+<section class="sheet">
+  <header class="g-head">
+    <div>
+      <div class="g-kicker">Product Security in One Hour · Reference guide 07</div>
+      <h1>Glossary</h1>
+      <p class="g-sub">Plain-language definitions of the product security terms used in the course, in alphabetical order, and where to read further.</p>
+    </div>
+    <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+  </header>
+  <div class="g-body">
+<p class="gnote">These are practical summaries, not regulatory text. For regulatory terms, the source document and your regulatory team govern. Regulatory details are current as of October 2026.</p>
+<div class="glist">
+  <p class="gt"><b>AAMI SW96</b> ANSI/AAMI SW96:2023, the FDA-recognized standard for device security risk management. It runs alongside ISO 14971, so security risks that could harm patients reach the safety risk file.</p>
+  <p class="gt"><b>AAMI TIR57 and TIR97</b> Technical reports on security risk management (TIR57, largely replaced by SW96 in practice) and on postmarket security risk (TIR97).</p>
+  <p class="gt"><b>AI Act</b> The EU's AI law. For AI in devices it requires accuracy, robustness and cybersecurity, including resistance to poisoned data; device deadlines moved to 2028.</p>
+  <p class="gt"><b>Architecture views</b> Diagrams of a product's components, connections, data flows and trust boundaries, showing where security controls sit. FDA expects them in a submission.</p>
+  <p class="gt"><b>Attack surface</b> Every place an attacker could try to get in: ports, radios, apps, services, update paths. Minimize it by removing what the product doesn't need.</p>
+  <p class="gt"><b>Authentication</b> Checking who or what is connecting, such as a clinic programmer proving itself to an implant.</p>
+  <p class="gt"><b>Authorization</b> Checking what an authenticated person or system is allowed to do.</p>
+  <p class="gt"><b>Availability</b> The security property that a device and its functions work when needed. For a therapy device, this means availability of therapy.</p>
+  <p class="gt"><b>CISA</b> The US Cybersecurity and Infrastructure Security Agency. It coordinates some disclosures, publishes advisories and runs the voluntary Secure by Design principles and pledge.</p>
+  <p class="gt"><b>Compensating controls</b> Measures that reduce risk when the preferred control or a patch isn't possible, such as isolating an unpatchable device on its own network segment.</p>
+  <p class="gt"><b>Confidentiality</b> The security property that only the right people and systems can see the data, such as patient images or heart-rhythm reports.</p>
+  <p class="gt"><b>Controlled risk</b> In FDA's 2016 postmarket guidance, a vulnerability whose residual risk of patient harm is acceptable. Fixed in a routine update; generally not reported as a correction.</p>
+  <p class="gt"><b>Coordinated vulnerability disclosure (CVD)</b> Researcher and manufacturer, sometimes with a government coordinator, agree on timing so a fix or mitigation is ready when an issue becomes public.</p>
+  <p class="gt"><b>Corrective and preventive action (CAPA)</b> The quality-system process for investigating problems, fixing their causes and preventing recurrence. Security findings feed into it.</p>
+  <p class="gt"><b>CVSS</b> Common Vulnerability Scoring System: a widely used severity score. FDA qualified a MITRE rubric that adapts it to clinical context.</p>
+  <p class="gt"><b>Cyber device</b> Under Section 524B, a device that includes software, can connect to the internet, and could be vulnerable to cyber threats. FDA reads connectivity broadly.</p>
+  <p class="gt"><b>Cyber Resilience Act (CRA)</b> EU regulation on the security of digital products. It excludes MDR/IVDR devices but reaches suppliers' components, gateways and non-medical accessories.</p>
+  <p class="gt"><b>Defense in depth</b> Several independent layers of protection, so that if one fails the next still protects the patient.</p>
+  <p class="gt"><b>Design controls</b> The quality-system process for planning, reviewing, verifying and validating a design. Security is added to it, not run separately.</p>
+  <p class="gt"><b>Design for updates</b> Planning from day one how fixes will reach every device safely for its whole service life.</p>
+  <p class="gt"><b>End of support</b> When a manufacturer stops providing support, including security updates. Plan it from design and announce it early. (End of life: it stops selling the product.)</p>
+  <p class="gt"><b>Enterprise IT security</b> Protecting an organization's own computers, networks and data. Product security protects what the company sells.</p>
+  <p class="gt"><b>Exploitability</b> How easy a weakness is to use, given the access, skill and tools needed. Security risk is rated by exploitability and severity, not probability.</p>
+  <p class="gt"><b>Fail safe</b> When something goes wrong, the device falls back to a state that keeps the patient safe, rather than locking up.</p>
+  <p class="gt"><b>FDA</b> The US Food and Drug Administration, the regulator for medical devices. Its cyber expectations come from law (Section 524B), regulation (the QMSR) and guidance.</p>
+  <p class="gt"><b>General safety and performance requirements (GSPRs)</b> Annex I requirements of the EU MDR and IVDR. They include information security in software, minimum IT security requirements and protection against unauthorized access.</p>
+  <p class="gt"><b>Guidance</b> A regulator's written expectations: how it reads the law and what reviewers look for. Not legally binding, but it is what reviewers check.</p>
+  <p class="gt"><b>Hazard and hazardous situation</b> A hazard is a potential source of harm; a hazardous situation is when a patient is exposed to one. Security adds a new cause: a hazard triggered on purpose.</p>
+  <p class="gt"><b>Health Sector Coordinating Council (HSCC)</b> Healthcare industry council. Its Joint Security Plan (JSP2) is a secure-by-design framework; its Model Contract (MC2) splits cyber duties between manufacturers and providers.</p>
+  <p class="gt"><b>IEC 62443-4-1 and 4-2</b> Industrial standards for secure development (4-1) and component security requirements (4-2), often used to support device security claims.</p>
+  <p class="gt"><b>IEC 81001-5-1</b> The international standard (2021) for security activities across the health software lifecycle. FDA-recognized; Japan's identical JIS T 81001-5-1 is its accepted route.</p>
+  <p class="gt"><b>Incident response</b> Handling an actual or suspected attack on a product in the field: contain it, check patient safety, restore a known good state, learn from it.</p>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 07 · CC BY 4.0</span><span>Page 1 of 3</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<div class="glist">
+  <p class="gt"><b>Information Sharing and Analysis Organization (ISAO)</b> A group where manufacturers, hospitals and others share threat information, such as Health-ISAC. Membership is one condition for FDA's lighter postmarket reporting.</p>
+  <p class="gt"><b>Integrity</b> The security property that data, settings, software and commands can't be changed without authorization. Often the most important property for therapy devices.</p>
+  <p class="gt"><b>Interim measures</b> Temporary steps, such as restricting a connection or disabling a feature, that protect patients while a full fix is prepared and validated.</p>
+  <p class="gt"><b>International Medical Device Regulators Forum (IMDRF)</b> Where device regulators agree shared principles. Its 2020 cybersecurity principles are the baseline national rules borrow from.</p>
+  <p class="gt"><b>ISO 13485</b> The quality management system standard for medical devices. The US QMSR incorporates it, so it is binding for devices sold in the US.</p>
+  <p class="gt"><b>ISO 14971</b> The standard for medical device safety risk management. Its scope explicitly includes data and systems security.</p>
+  <p class="gt"><b>ISO/IEC 29147 and 30111</b> Standards for vulnerability disclosure (receiving and publishing) and vulnerability handling (investigating and fixing). Most PSIRT processes build on them.</p>
+  <p class="gt"><b>Labeling</b> Security information for customers: secure setup, network requirements, how updates arrive, the support period. In the EU, minimum IT security requirements go in the instructions for use.</p>
+  <p class="gt"><b>Least privilege</b> Every person and component gets only the access it needs, like a hotel key card that opens only your room.</p>
+  <p class="gt"><b>Legacy device</b> A device that can no longer be reasonably protected against current threats but is often still in clinical use. Managing it is a shared responsibility.</p>
+  <p class="gt"><b>MDCG 2019-16</b> The EU's non-binding guidance on cybersecurity for medical devices (Rev.1, 2020). It explains how to meet the GSPRs.</p>
+  <p class="gt"><b>MDR and IVDR</b> The EU Medical Device Regulation and In Vitro Diagnostic Regulation. Their GSPRs include cybersecurity; a proposed revision would make it explicit.</p>
+  <p class="gt"><b>MDS2</b> Manufacturer Disclosure Statement for Medical Device Security: a standard form hospitals use to compare devices. A customer expectation, not a regulation.</p>
+  <p class="gt"><b>Multi-factor authentication (MFA)</b> Requiring a second proof of identity beyond a password, for example for remote service sessions.</p>
+  <p class="gt"><b>Multi-patient harm</b> Harm to many patients at once from one weakness in shared infrastructure, such as a cloud portal, update server or drug library.</p>
+  <p class="gt"><b>NIS2 Directive</b> EU law on the cybersecurity of organizations, including device manufacturers above size thresholds. About the company's own security and incident reporting, not the product.</p>
+  <p class="gt"><b>Penetration testing</b> Skilled testers trying to break in as an attacker would, to find weaknesses before release.</p>
+  <p class="gt"><b>Postmarket</b> A product's working life after release, usually the longest phase: monitor, assess patient risk, fix, tell customers, report when required.</p>
+  <p class="gt"><b>Premarket</b> Everything before a product is authorized and sold: designing security in, threat modeling, testing, and preparing evidence for the submission.</p>
+  <p class="gt"><b>Privacy</b> Protecting people's personal information and how it is used. It overlaps with product security but is a separate job.</p>
+  <p class="gt"><b>Product security</b> Making sure a product and everything it depends on can resist, detect and recover from attacks while in use. A product security program makes it routine.</p>
+  <p class="gt"><b>Product security incident response team (PSIRT)</b> The team that receives and handles vulnerability reports and security incidents for products: triage, fixes, disclosure and communication.</p>
+  <p class="gt"><b>Quality management system</b> A manufacturer's procedures for designing, making and maintaining products: design controls, risk management, supplier controls, complaints, CAPA.</p>
+  <p class="gt"><b>Quality Management System Regulation (QMSR)</b> FDA's quality regulation, effective February 2026, which incorporates ISO 13485. No cyber clause, but FDA maps security work onto its processes.</p>
+  <p class="gt"><b>RACI chart</b> For each activity: who is Responsible (does the work), Accountable (owns the outcome; exactly one role), Consulted and Informed.</p>
+  <p class="gt"><b>Ransomware</b> Malicious software that locks or encrypts systems until a ransom is paid. Devices can be hit as collateral damage.</p>
+  <p class="gt"><b>Regulator reporting</b> Telling a regulator about a security issue when the rules require it. Under FDA policy, fixing an uncontrolled risk is generally reportable; your regulatory team decides.</p>
+  <p class="gt"><b>Residual risk</b> The risk that remains after controls are in place.</p>
+  <p class="gt"><b>Safety risk management</b> Identifying hazards, estimating the risk of harm, controlling it and checking the controls work, following ISO 14971.</p>
+  <p class="gt"><b>Section 524B</b> The part of the US FD&amp;C Act, in force since March 2023, requiring cyber device submissions to include a postmarket vulnerability plan, secure update processes and an SBOM.</p>
+  <p class="gt"><b>Secure by default</b> Ship in the safest configuration, so customers opt in to riskier options: remote service off, no shared factory password.</p>
+  <p class="gt"><b>Secure by design</b> Treating security as a property of the design from the first sketch. Also the name of CISA's voluntary principles and pledge for software vendors.</p>
+  <p class="gt"><b>Secure Product Development Framework (SPDF)</b> FDA's term for processes, built into the quality system, that bring security into every phase of development and keep it going after release.</p>
+  <p class="gt"><b>Secure Software Development Framework (SSDF)</b> NIST's voluntary good practice for secure software development.</p>
+  <p class="gt"><b>Security control categories</b> FDA's design checklist: authentication, authorization, cryptography, integrity, confidentiality, event detection and logging, resiliency and recovery, updatability.</p>
+  <p class="gt"><b>Security incident</b> An event in which a weakness is, or may have been, exploited. Report suspected incidents right away; you don't need to be sure.</p>
+  <p class="gt"><b>Security questionnaire</b> A customer's list of security questions about a product. Answer from approved documentation; route new questions to product security.</p>
+  <p class="gt"><b>Security requirements</b> Testable requirements that answer significant threats, such as “remote service sessions shall require multi-factor authentication.”</p>
+  <p class="gt"><b>Security researcher</b> An independent person who finds and reports vulnerabilities. Treat them as partners: point them to the disclosure policy and tell the PSIRT.</p>
+  <p class="gt"><b>Security risk management</b> Identifying threats and weaknesses, rating exploitability and severity, and choosing controls. Separate from, but linked to, safety risk management.</p>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 07 · CC BY 4.0</span><span>Page 2 of 3</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<div class="glist" style="margin-bottom:4pt">
+  <p class="gt"><b>Shared responsibility</b> Manufacturers, hospitals and others each own part of a device's security. A hospital can't patch unvalidated software; a manufacturer can't segment a hospital's network.</p>
+  <p class="gt"><b>Signed update</b> An update with a digital signature the device checks to confirm it came from the manufacturer unaltered. Signing protects integrity, not secrecy.</p>
+  <p class="gt"><b>Software bill of materials (SBOM)</b> The product's ingredients list: every software component with name, version, supplier and support status. Required in US cyber device submissions.</p>
+  <p class="gt"><b>SPDX and CycloneDX</b> The two most common machine-readable SBOM formats.</p>
+  <p class="gt"><b>Standard</b> A consensus document from a body such as ISO, IEC or AAMI that says how. Voluntary, but regulators often recognize standards. Frameworks are similar good practice from industry groups or agencies.</p>
+  <p class="gt"><b>Supplier controls</b> Quality-system processes for managing suppliers. For security: component lists, vulnerability notification and support life in contracts.</p>
+  <p class="gt"><b>Third-party software</b> Software written by someone else: commercial, open-source or other off-the-shelf components. You inherit its weaknesses; it belongs in the SBOM.</p>
+  <p class="gt"><b>Threat</b> Someone or something that could exploit a weakness to cause harm: the start of the chain from threat to harm.</p>
+  <p class="gt"><b>Threat modeling</b> A structured team look at a design: how does it work, what could someone do to it on purpose, and what will we do about it?</p>
+  <p class="gt"><b>Total product lifecycle (TPLC)</b> Every stage of a device's life, from first design idea until the last unit leaves service.</p>
+  <p class="gt"><b>Traceability</b> Links from each threat to its control, the test that verifies it, and the residual risk.</p>
+  <p class="gt"><b>Trade-offs</b> Balancing security against usability, emergency access, clinical workflow, performance and validation burden, with clinical input and the rationale recorded.</p>
+  <p class="gt"><b>Uncontrolled risk</b> In FDA's 2016 postmarket guidance, a vulnerability whose residual risk of patient harm is unacceptable. Needs prompt fixes and communication, and is generally reportable.</p>
+  <p class="gt"><b>Verification and validation</b> Checking that a design meets its requirements and that the device meets user needs. Every change, including a security fix, goes through it.</p>
+  <p class="gt"><b>VEX</b> Vulnerability Exploitability eXchange: statements telling customers whether a known vulnerability in a listed component actually affects the product.</p>
+  <p class="gt"><b>Vulnerability</b> A weakness someone could exploit to cause harm.</p>
+  <p class="gt"><b>Vulnerability disclosure policy (VDP)</b> A manufacturer's published statement telling researchers how to report a flaw and what to expect.</p>
+  <p class="gt"><b>Vulnerability monitoring</b> Comparing the SBOM with vulnerability databases and supplier advisories, so the team learns quickly when a shipped component has a known flaw.</p>
+</div>
+<h2>Further reading <span style="font-weight:500;font-size:8.3pt;color:var(--muted);letter-spacing:0">· primary sources; check the publisher for the current version</span></h2>
+<div class="frl">
+  <p><b>US FDA, premarket cybersecurity guidance</b> <i>Cybersecurity in Medical Devices: Quality Management System Considerations and Content of Premarket Submissions</i> (2023; updated 2025; reissued 2026). What FDA expects before release, including the Section 524B requirements. <span class="mono">fda.gov</span></p>
+  <p><b>US FDA, postmarket cybersecurity guidance</b> <i>Postmarket Management of Cybersecurity in Medical Devices</i> (2016). Monitoring, assessing and responding to vulnerabilities after release; controlled and uncontrolled risk. <span class="mono">fda.gov</span></p>
+  <p><b>IMDRF principles</b> <i>Principles and Practices for Medical Device Cybersecurity</i> (2020), plus 2023 documents on legacy devices and SBOMs. The international baseline. <span class="mono">imdrf.org</span></p>
+  <p><b>IEC 81001-5-1:2021</b> <i>Health software and health IT systems safety, effectiveness and security, Part 5-1: Security, Activities in the product life cycle.</i> The secure lifecycle standard for health software.</p>
+  <p><b>ANSI/AAMI SW96:2023</b> <i>Standard for medical device security: Security risk management for device manufacturers.</i> Security risk management alongside safety risk. <span class="mono">aami.org</span></p>
+  <p><b>ISO 14971:2019</b> <i>Medical devices: Application of risk management to medical devices.</i> The safety risk process that security risk links to. <span class="mono">iso.org</span></p>
+  <p><b>NIST SSDF</b> <i>SP 800-218, Secure Software Development Framework.</i> Secure development practices for any software team. <span class="mono">csrc.nist.gov/projects/ssdf</span></p>
+  <p><b>CISA Secure by Design</b> Voluntary principles and pledge for software vendors generally; good for leadership conversations. <span class="mono">cisa.gov/securebydesign</span></p>
+</div>
+
+<div class="box pro" style="margin-top:10pt">
+  <h3>Go deeper with your team</h3>
+  <p style="margin:0">This guide accompanies the free course <b>Product Security in One Hour</b> (mjhillyer.github.io/Product-Security-in-One-Hour).
+    For in-depth, instructor-led product security training for your teams, with exercises on your own products and MedTech regulatory depth, contact
+    <b>Matt Hillyer LLC</b> at <a href="mailto:matt@matthillyer.io?subject=Product%20security%20training"><b>matt@matthillyer.io</b></a>.
+    To see where your program stands, try the Product Security Maturity Framework scorecard (mjhillyer.github.io/Product-Security-Maturity-Assessment-Program/scorecard.html).</p>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 07 · CC BY 4.0</span><span>Page 3 of 3</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+</body>
+</html>

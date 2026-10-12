@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Meet the Devices | Product Security in One Hour</title>
+<meta name="description" content="Four fictional medical devices appear throughout the course: an implantable pacemaker system, a hospital infusion pump fleet, an AI skin-lesion triage app and a surgical robot. Each brings a different set of security challenges.">
+<style>
+.dev{position:relative;border:1px solid var(--line);border-radius:8px;padding:9pt 10pt 8pt;margin:0 0 9pt;overflow:hidden;}
+.dev::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--c,#197EC6);}
+.dev .cat{font-size:7.2pt;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--c,#197EC6);}
+.dev .dname{font-size:13pt;font-weight:800;margin:1pt 0 1pt;letter-spacing:-.02em;}
+.dev .one{color:var(--muted);margin:0 0 5pt;}
+.dev .split{display:grid;grid-template-columns:1.2fr 1fr;gap:12pt;align-items:center;}
+.dev .why{font-size:7.2pt;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--dim);margin:0 0 2pt;}
+.dev ul{margin:0;}
+.sk{display:block;width:100%;height:auto;}
+.sk text{font-family:var(--sans);font-size:14px;font-weight:700;fill:#0f172a;}
+.sk .s{font-size:11.5px;font-weight:500;fill:#475569;}
+.sk .bx{fill:#eff6ff;stroke:#197EC6;stroke-width:1.6;}
+.sk .dv{fill:#faf5ff;stroke:#7E44A9;stroke-width:2.2;}
+.sk .ln{stroke:#64748b;stroke-width:1.6;fill:none;}
+.sk .bd{fill:rgba(156,51,150,.035);stroke:#9C3396;stroke-width:1.5;stroke-dasharray:6 5;}
+.sk .bl{font-size:10.5px;font-weight:700;letter-spacing:.05em;fill:#9C3396;}
+.sk .room{fill:none;stroke:#cbd5e1;stroke-width:1.4;}
+.sk .rl{font-size:10.5px;font-weight:700;letter-spacing:.05em;fill:#64748b;}
+.key{display:inline-block;width:10pt;height:7pt;border-radius:2pt;vertical-align:-.5pt;margin:0 2pt 0 1pt;}
+.key.p{background:#faf5ff;border:1.5px solid #7E44A9;}
+.key.d{border:1.4px dashed #9C3396;}
+.fine{font-size:7.6pt;color:var(--dim);margin-top:6pt;}
+@media screen and (max-width:860px){.dev .split{grid-template-columns:1fr;gap:6pt;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a href="../guides.html">← All guides</a>
+  <span class="tb-title">Meet the Devices</span>
+  <span class="tb-actions"><a class="tb-btn" href="pdf/meet-the-devices.pdf" download>Download PDF</a><button class="tb-btn" type="button" onclick="window.print()">Print</button></span>
+</div>
+<section class="sheet">
+  <header class="g-head">
+    <div>
+      <div class="g-kicker">Product Security in One Hour · Reference guide 01</div>
+      <h1>Meet the Devices</h1>
+      <p class="g-sub">Four <b>fictional</b> products appear throughout the course. Each is a different kind of medical device with a different set of security challenges. Names, companies and details are invented; any resemblance to real products is coincidental.</p>
+    </div>
+    <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+  </header>
+  <div class="g-body">
+<p class="lead">In the sketches, <span class="key p"></span> marks parts the manufacturer builds and <span class="key d"></span> dashed lines mark places where the device depends on something the manufacturer doesn't control.</p>
+
+<div class="dev" style="--c:#9C3396">
+  <div class="cat">Implantable · home use</div>
+  <h3 class="dname">CardiaPace</h3>
+  <p class="one">An implantable pacemaker, a bedside home transmitter, and a cloud remote-monitoring portal used by cardiology clinics.</p>
+  <div class="split">
+    <svg class="sk" viewBox="0 0 400 180" role="img" aria-labelledby="cp-t"><title id="cp-t">CardiaPace: the implant talks by short-range radio to the home transmitter, which uploads over the patient's home network to the cloud portal used by the clinic. A clinic programmer talks to the implant in person.</title>
+      <rect class="bd" x="128" y="44" width="112" height="86" rx="8"/><text class="bl" x="128" y="37">HOME NETWORK</text>
+      <rect class="dv" x="6" y="72" width="80" height="46" rx="6"/><text x="46" y="92" text-anchor="middle">Implant</text><text class="s" x="46" y="108" text-anchor="middle">pacemaker</text>
+      <rect class="dv" x="138" y="72" width="92" height="46" rx="6"/><text x="184" y="92" text-anchor="middle">Home</text><text class="s" x="184" y="108" text-anchor="middle">transmitter</text>
+      <rect class="dv" x="262" y="72" width="70" height="46" rx="6"/><text x="297" y="92" text-anchor="middle">Cloud</text><text class="s" x="297" y="108" text-anchor="middle">portal</text>
+      <rect class="bx" x="342" y="72" width="54" height="46" rx="6"/><text x="369" y="100" text-anchor="middle">Clinic</text>
+      <rect class="dv" x="6" y="142" width="130" height="32" rx="6"/><text class="s" x="71" y="162" text-anchor="middle">clinic programmer</text>
+      <path class="ln" d="M86,95 H138"/><path class="ln" d="M230,95 H262"/><path class="ln" d="M332,95 H342"/><path class="ln" d="M46,118 V142"/>
+      <text class="s" x="111" y="88" text-anchor="middle">radio</text>
+    </svg>
+    <div>
+      <p class="why">Why security matters here</p>
+      <ul>
+        <li>Life-sustaining therapy: integrity and availability come first.</li>
+        <li>Implant firmware is hard to update, and patients can't simply switch it off.</li>
+        <li>The transmitter lives on a home network the manufacturer doesn't control.</li>
+        <li>One cloud portal holds data for many patients across many clinics.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="dev" style="--c:#7E44A9">
+  <div class="cat">Hospital connected device</div>
+  <h3 class="dname">FlowGuard</h3>
+  <p class="one">A fleet of large-volume infusion pumps on hospital Wi-Fi, a drug-library server, and integration with the hospital's electronic health record (EHR) for auto-programming.</p>
+  <div class="split">
+    <svg class="sk" viewBox="0 0 400 180" role="img" aria-labelledby="fg-t"><title id="fg-t">FlowGuard: hundreds of pumps on hospital Wi-Fi connect to the drug-library server and the hospital EHR; biomedical engineering manages the fleet. All of it sits on the hospital's own network.</title>
+      <rect class="bd" x="4" y="30" width="392" height="146" rx="8"/><text class="bl" x="8" y="23">HOSPITAL NETWORK (RUN BY THE CUSTOMER)</text>
+      <rect class="dv" x="14" y="46" width="84" height="36" rx="6"/><text x="56" y="69" text-anchor="middle">Pump</text>
+      <rect class="dv" x="22" y="92" width="92" height="36" rx="6"/><text x="68" y="115" text-anchor="middle" style="font-size:13px">Pumps ×300</text>
+      <rect class="dv" x="150" y="46" width="124" height="36" rx="6"/><text x="212" y="69" text-anchor="middle">Drug library</text>
+      <rect class="bx" x="150" y="126" width="124" height="36" rx="6"/><text x="212" y="149" text-anchor="middle">Hospital EHR</text>
+      <rect class="bx" x="296" y="76" width="94" height="46" rx="6"/><text x="343" y="96" text-anchor="middle">Biomed</text><text class="s" x="343" y="112" text-anchor="middle">fleet mgmt</text>
+      <path class="ln" d="M114,104 L150,70"/><path class="ln" d="M114,118 L150,142"/><path class="ln" d="M274,66 L296,90"/>
+      <text class="s" x="96" y="152" text-anchor="middle">Wi-Fi</text>
+    </svg>
+    <div>
+      <p class="why">Why security matters here</p>
+      <ul>
+        <li>Hundreds of units on a network the hospital runs, not the manufacturer.</li>
+        <li>A shared drug library: one bad update can affect every pump at once.</li>
+        <li>Hospital security teams ask hard questions before they buy (questionnaires, the MDS2 form).</li>
+        <li>Downtime means nurses fall back to manual programming.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="box note">
+  <h3>Using the cast</h3>
+  <p>When you meet a new idea, ask how it would look for each device. The same principle, such as “design for updates”, plays out very differently for an implant, a hospital fleet, a phone app and a 15-year capital system. Then ask the same question of your own product.</p>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 01 · CC BY 4.0</span><span>Page 1 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<div class="dev" style="--c:#197EC6">
+  <div class="cat">Software as a Medical Device (SaMD)</div>
+  <h3 class="dname">DermaLens</h3>
+  <p class="one">An AI-assisted skin-lesion triage app: a phone camera app and a cloud model that suggests whether a lesion needs urgent dermatology review. Sold to clinics and, in some markets, used by patients.</p>
+  <div class="split">
+    <svg class="sk" viewBox="0 0 400 180" role="img" aria-labelledby="dl-t"><title id="dl-t">DermaLens: the app on the user's phone sends images to the cloud API and AI model; results go back to the app and to a clinic dashboard. Open-source and third-party components sit in both the app and the cloud.</title>
+      <rect class="bd" x="6" y="52" width="104" height="72" rx="8"/><text class="bl" x="6" y="45">USER'S PHONE</text>
+      <rect class="dv" x="14" y="62" width="88" height="52" rx="6"/><text x="58" y="85" text-anchor="middle">Phone app</text><text class="s" x="58" y="102" text-anchor="middle">camera</text>
+      <rect class="dv" x="160" y="40" width="100" height="36" rx="6"/><text x="210" y="63" text-anchor="middle">Cloud API</text>
+      <rect class="dv" x="160" y="100" width="100" height="36" rx="6"/><text x="210" y="123" text-anchor="middle">AI model</text>
+      <rect class="bx" x="300" y="62" width="94" height="52" rx="6"/><text x="347" y="85" text-anchor="middle">Clinic</text><text class="s" x="347" y="102" text-anchor="middle">dashboard</text>
+      <path class="ln" d="M102,86 L160,58"/><path class="ln" d="M210,76 V100"/><path class="ln" d="M260,58 L300,82"/>
+      <text class="s" x="200" y="166" text-anchor="middle">open-source and third-party components throughout</text>
+    </svg>
+    <div>
+      <p class="why">Why security matters here</p>
+      <ul>
+        <li>Runs on phones and cloud services the manufacturer doesn't fully control.</li>
+        <li>Many open-source and third-party components, so the SBOM matters.</li>
+        <li>Frequent releases: security has to keep pace with development.</li>
+        <li>A tampered model or image pipeline gives wrong triage advice.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="dev" style="--c:#1999B2">
+  <div class="cat">Surgical · capital equipment</div>
+  <h3 class="dname">OrionArm</h3>
+  <p class="one">A surgical robotic system: a surgeon console running a commercial operating system, a patient-side arm cart, a vision tower, and remote service access for diagnostics and updates. Expected service life about 15 years.</p>
+  <div class="split">
+    <svg class="sk" viewBox="0 0 400 180" role="img" aria-labelledby="oa-t"><title id="oa-t">OrionArm: the surgeon console, arm cart and vision tower are linked in the operating room; the console reaches the manufacturer's remote service center through the hospital network.</title>
+      <text class="rl" x="8" y="22">OPERATING ROOM</text><rect class="room" x="4" y="28" width="206" height="146" rx="8"/>
+      <rect class="dv" x="14" y="38" width="112" height="46" rx="6"/><text x="70" y="58" text-anchor="middle">Console</text><text class="s" x="70" y="74" text-anchor="middle">commercial OS</text>
+      <rect class="dv" x="14" y="118" width="112" height="36" rx="6"/><text x="70" y="141" text-anchor="middle">Arm cart</text>
+      <rect class="dv" x="140" y="70" width="62" height="50" rx="6"/><text x="171" y="91" text-anchor="middle">Vision</text><text x="171" y="108" text-anchor="middle">tower</text>
+      <rect class="bd" x="222" y="66" width="72" height="58" rx="8"/><text class="s" x="258" y="91" text-anchor="middle">hospital</text><text class="s" x="258" y="106" text-anchor="middle">network</text>
+      <rect class="dv" x="306" y="62" width="90" height="66" rx="6"/><text x="351" y="85" text-anchor="middle">Remote</text><text x="351" y="102" text-anchor="middle">service</text><text class="s" x="351" y="118" text-anchor="middle">manufacturer</text>
+      <path class="ln" d="M70,84 V118"/><path class="ln" d="M126,70 L140,84"/><path class="ln" d="M126,130 L140,110"/><path class="ln" d="M202,95 H222"/><path class="ln" d="M294,95 H306"/>
+    </svg>
+    <div>
+      <p class="why">Why security matters here</p>
+      <ul>
+        <li>A 15-year life outlasts operating-system and third-party support: legacy risk.</li>
+        <li>Remote service access is powerful, so it needs strong control and logging.</li>
+        <li>Downtime cancels surgeries: availability is a clinical issue.</li>
+        <li>Updates need validation and scheduling with the hospital.</li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<h2>The four at a glance</h2>
+<table class="t">
+  <thead><tr><th style="width:62pt">Device</th><th>Environment it depends on</th><th>How a fix reaches patients</th><th>Watch most closely</th></tr></thead>
+  <tbody>
+    <tr><td class="k">CardiaPace</td><td>The patient's body and home network; the manufacturer's cloud</td><td>The transmitter updates itself; the implant usually needs a clinic visit</td><td>Integrity and availability of life-sustaining therapy</td></tr>
+    <tr><td class="k">FlowGuard</td><td>A hospital-run network shared with hundreds of other devices</td><td>Scheduled with each hospital's biomedical engineers</td><td>The shared drug library, which reaches every pump</td></tr>
+    <tr><td class="k">DermaLens</td><td>Users' phones and third-party cloud services</td><td>An app update can reach users within days</td><td>Third-party components; the integrity of the model and images</td></tr>
+    <tr><td class="k">OrionArm</td><td>The operating room, the hospital network and remote service</td><td>Planned around surgery lists</td><td>Remote access; an operating system supported for less time than the robot</td></tr>
+  </tbody>
+</table>
+<p class="fine">CardiaPace, FlowGuard, DermaLens and OrionArm are fictional devices created for training. Training material, not legal or regulatory advice.</p>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 01 · CC BY 4.0</span><span>Page 2 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+</body>
+</html>

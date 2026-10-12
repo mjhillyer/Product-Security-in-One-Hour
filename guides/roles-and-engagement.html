@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Roles &amp; When to Engage Product Security | Product Security in One Hour</title>
+<meta name="description" content="Product security is not one team's job. Who typically does what before and after release, everyday habits, when to bring in your product security team, and how to report a suspected vulnerability.">
+<style>
+.small{font-size:8.5pt;}
+.t.roles{font-size:7.9pt;line-height:1.28;}
+.t.roles td{padding:2.8pt 5pt;}
+.t.roles td.k{white-space:normal;font-size:8.4pt;}
+.t.roles td.w{color:#9a3412;}
+.habits{display:grid;grid-template-columns:repeat(3,1fr);gap:5pt 12pt;font-size:8.4pt;}
+.habits b{display:block;}
+.trig{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:8px;padding:6pt 8pt 5pt;background:#fff;}
+.trig .tag{color:var(--c);}
+.trig h3{margin:1pt 0 3pt;}
+.trig .checks{font-size:8.4pt;margin-bottom:4pt;}
+.trig .when{font-size:7.8pt;color:var(--muted);border-top:1px solid var(--line);padding-top:3pt;}
+.urg{display:grid;grid-template-columns:1.35fr 1.15fr .9fr;gap:7pt;margin:7pt 0 3pt;}
+.urg>div{border-radius:8px;padding:5pt 8pt;font-size:8.3pt;border:1px solid var(--line);}
+.urg h4{margin:0 0 2pt;font-size:9.2pt;}
+.urg .now{background:#fff7ed;border-color:#fdba74;}
+.urg .now h4{color:#9a3412;}
+.urg .next{background:#f0f7ff;border-color:#93c5fd;}
+.urg .next h4{color:#1e40af;}
+.urg .none{background:var(--soft);}
+.urg .none h4{color:var(--muted);}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 4pt;font-size:8.4pt;}
+.steps li{counter-increment:s;position:relative;padding-left:17pt;margin:0 0 3.5pt;}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:12pt;height:12pt;border-radius:3.5pt;background:var(--brand);color:#fff;font-size:7.4pt;font-weight:800;display:grid;place-items:center;}
+.chain{display:grid;grid-template-columns:repeat(4,1fr);gap:0 15pt;margin:3pt 0 3pt;}
+.chain>div{position:relative;border:1px solid var(--line);border-top:3px solid var(--c);border-radius:6px;padding:3pt 6pt 4pt;font-size:8.2pt;line-height:1.3;background:#fff;}
+.chain>div:not(:last-child)::after{content:"→";position:absolute;right:-12pt;top:38%;color:var(--dim);font-size:10pt;}
+.chain b{display:block;font-size:8.8pt;}
+.fill{display:grid;grid-template-columns:1fr 1fr;gap:4pt 16pt;margin-top:5pt;font-size:8.3pt;font-weight:600;color:var(--muted);}
+.fill span{display:block;border-bottom:1px solid #94a3b8;height:15pt;}
+.fine{font-size:7.6pt;color:var(--dim);margin-top:6pt;}
+@media screen and (max-width:860px){.habits,.urg,.chain,.fill{grid-template-columns:1fr;gap:6pt;}.chain>div:not(:last-child)::after{display:none;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a href="../guides.html">← All guides</a>
+  <span class="tb-title">Roles &amp; When to Engage Product Security</span>
+  <span class="tb-actions"><a class="tb-btn" href="pdf/roles-and-engagement.pdf" download>Download PDF</a><button class="tb-btn" type="button" onclick="window.print()">Print</button></span>
+</div>
+<section class="sheet">
+  <header class="g-head">
+    <div>
+      <div class="g-kicker">Product Security in One Hour · Reference guide 05</div>
+      <h1>Roles &amp; When to Engage Product Security</h1>
+      <p class="g-sub">Product security is not one team's job. Your product security team can't see every design decision, customer conversation or supplier notice. The program works when each role knows its part and when to hand over.</p>
+    </div>
+    <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+  </header>
+  <div class="g-body">
+<h2>Who does what</h2>
+<p class="small">A <b>typical</b> split; your own procedure defines the real one (in a small company one person may cover three rows). Most problems happen at <b>hand-offs</b>, when information one role holds never reaches the role that needs it.</p>
+<table class="t roles">
+  <colgroup><col style="width:15%"><col style="width:29%"><col style="width:29%"><col style="width:27%"></colgroup>
+  <thead><tr><th>Role</th><th>Before release</th><th>After release</th><th>Watch for</th></tr></thead>
+  <tbody>
+    <tr><td class="k">Product owner</td><td>Makes security a product requirement, with room in roadmap and budget.</td><td>Prioritizes fixes and updates; owns end-of-support decisions.</td><td class="w">Connected features added without review; “we'll fix it next release”.</td></tr>
+    <tr><td class="k">Program or project manager</td><td>Schedules security activities as real deliverables.</td><td>Plans patch releases; coordinates cross-team response.</td><td class="w">Security testing squeezed into the last week or moved “after launch”.</td></tr>
+    <tr><td class="k">Engineering</td><td>Designs, builds and tests security controls; keeps the component list accurate.</td><td>Investigates and fixes vulnerabilities; builds and validates updates.</td><td class="w">Debug access, default passwords or test accounts left in; unreviewed components.</td></tr>
+    <tr><td class="k">Product security</td><td>Sets the method; leads threat modeling and risk assessment; reviews designs and submission content.</td><td>Monitors vulnerabilities; runs the PSIRT; coordinates disclosure and advisories.</td><td class="w">Being brought in late as a final gate, when changes cost most.</td></tr>
+    <tr><td class="k">Quality and regulatory</td><td>Builds security into design controls and risk management; owns the submission.</td><td>Runs complaints and corrective action; decides on regulator reports and field actions.</td><td class="w">Complaints closed as “no fault found” without asking “could this be security?”</td></tr>
+    <tr><td class="k">Clinical or medical affairs</td><td>Judges clinical impact of security risks, and whether controls fit workflow and emergencies.</td><td>Assesses patient risk of a vulnerability and its fix; shapes clinician and patient messages.</td><td class="w">Controls that slow care in an emergency.</td></tr>
+    <tr><td class="k">Service and support</td><td>Explains field needs (remote access, service tools) so they're designed securely.</td><td>Often first to hear of odd behavior; installs updates; decommissions returned units.</td><td class="w">Shared service passwords, unofficial remote tools, resetting a device before reporting it.</td></tr>
+    <tr><td class="k">Sales and customer teams</td><td>Bring customer security requirements in early: questionnaires, contracts, tenders.</td><td>Share approved documentation and advisories; route questions and reports.</td><td class="w">Promising fix dates nobody agreed; answering questionnaires from memory.</td></tr>
+    <tr><td class="k">Supply chain, procurement</td><td>Build security into supplier selection and contracts: component lists, flaw notification, support life.</td><td>Pass supplier security notices on quickly; manage component end of life.</td><td class="w">Substitute parts or supplier changes nobody else hears about.</td></tr>
+  </tbody>
+</table>
+
+<div class="cols">
+  <div class="box pro small"><b>Patient safety lens.</b> Security decisions are often clinical: taking FlowGuard pumps off the network, or updating a CardiaPace implant, affects patients. Clinical colleagues belong in the room.</div>
+  <div class="box note small"><b>Map your program with a RACI chart:</b> who is <b>R</b>esponsible, <b>A</b>ccountable (exactly one role), <b>C</b>onsulted and <b>I</b>nformed for each activity? Gaps become visible. Start from the <a href="../templates/program-raci.xlsx">program RACI template</a>.</div>
+</div>
+
+<h2>Everyday habits</h2>
+<div class="habits">
+  <div><b>Ask the security question.</b> In every design review: does this change how the product connects, what it trusts or what data it holds?</div>
+  <div><b>Keep the inventory honest.</b> Report component, version and supplier changes, so a new vulnerability can be checked in hours.</div>
+  <div><b>No secrets in the wrong place.</b> Keep passwords, keys and patient data out of tickets, chat, email and code.</div>
+  <div><b>No “temporary” back doors.</b> Track debug ports, test accounts and default passwords; remove them before release.</div>
+  <div><b>Answer from approved sources.</b> Use published security documents; route new questions. Never guess or promise a fix date.</div>
+  <div><b>Take field signals seriously.</b> An odd connection, unknown setting or strange returned unit is worth a message. Report; don't reset.</div>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 05 · CC BY 4.0</span><span>Page 1 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<h2>When to engage your product security team</h2>
+<p class="small">Your product security team would rather hear about ten things that turn out fine than miss one that doesn't.</p>
+<div class="cols-3">
+  <div class="trig" style="--c:#9C3396">
+    <span class="tag">Design and build</span>
+    <h3>Changes to the product</h3>
+    <ul class="checks">
+      <li>A new interface: Wi-Fi, Bluetooth, USB, cloud, app, service port.</li>
+      <li>A new or changed third-party or open-source component, even a version upgrade.</li>
+      <li>A change to security controls: logins, permissions, encryption, updates.</li>
+      <li>New data types or cloud services.</li>
+    </ul>
+    <div class="when">Usually: <b>early</b>, at the next design review</div>
+  </div>
+  <div class="trig" style="--c:#197EC6">
+    <span class="tag">Customers and field</span>
+    <h3>Signals from outside</h3>
+    <ul class="checks">
+      <li>A customer security questionnaire, tender or contract clause.</li>
+      <li>A suspected vulnerability, from anyone.</li>
+      <li>Odd field behavior: unexpected traffic, unknown settings.</li>
+      <li>A complaint that might be security-related.</li>
+    </ul>
+    <div class="when">Usually: <b>now</b>, the same day</div>
+  </div>
+  <div class="trig" style="--c:#1999B2">
+    <span class="tag">Lifecycle</span>
+    <h3>Decisions about the future</h3>
+    <ul class="checks">
+      <li>End-of-support decisions for the product or anything in it, such as its operating system.</li>
+      <li>Operating-system or platform upgrade plans.</li>
+      <li>Changes to remote service access: tools, people, partners, ways in.</li>
+    </ul>
+    <div class="when">Usually: <b>early</b>, at the next planning milestone</div>
+  </div>
+</div>
+<div class="urg">
+  <div class="now"><h4>Now (the same day)</h4>Anything suggesting a product may be vulnerable today: a suspected vulnerability, odd field behavior, a possibly security-related complaint, a supplier flaw notice. Questionnaires too: they have deadlines.</div>
+  <div class="next"><h4>Early: next design review</h4>Planned changes to interfaces, components, data, cloud or remote access, and end-of-support dates, <b>before the design is settled</b>. A “minor library update” still changes the SBOM.</div>
+  <div class="none"><h4>No need</h4>Changes that can't affect how the product resists or recovers from attack, such as brochure photos. When in doubt, ask: it costs one message.</div>
+</div>
+
+<h2>Reporting a suspected vulnerability or incident</h2>
+<div class="cols" style="grid-template-columns:1.12fr 1fr">
+  <div>
+    <p class="small">You don't need to know whether it's a <b>vulnerability</b> (a weakness someone could exploit) or an <b>incident</b> (one that is, or may have been, exploited), or whether it's real. Notice and report.</p>
+    <ol class="steps">
+      <li><b>Report internally right away</b>, usually to your PSIRT (product security incident response team), and to the complaint process if a customer reported it. No channel? Tell your manager the same day. Note product, version, what, where, when, who.</li>
+      <li><b>Don't investigate or test on your own.</b> It can disrupt therapy and destroy evidence.</li>
+      <li><b>Preserve information.</b> Keep emails, screenshots and logs. Don't reset, wipe or ship back a device until the team says so.</li>
+      <li><b>Keep it confidential.</b> Thank the reporter and say it has been passed on. Don't confirm, deny, debate or promise dates.</li>
+    </ol>
+  </div>
+  <div>
+    <div class="box warn small" style="margin-bottom:7pt"><b>Patient safety first.</b> If a patient may be affected now, follow your complaint and adverse-event process immediately and report the security angle in parallel. Never “test the theory” on a device connected to a patient.</div>
+    <div class="box note small"><b>If an outside researcher contacts you:</b> thank them, point them to your company's published <b>vulnerability disclosure policy (VDP)</b>, and pass everything to your PSIRT the same day. Researchers who report are helping. The goal is <b>coordinated vulnerability disclosure</b>: the fix and the news arrive together.</div>
+  </div>
+</div>
+<h3 style="margin-top:4pt">What typically happens next (your PSIRT coordinates the other teams)</h3>
+<div class="chain">
+  <div style="--c:#9C3396"><b>1. Intake</b>Logs the report, acknowledges it, asks for details.</div>
+  <div style="--c:#7E44A9"><b>2. Triage</b>Is it real? Which products and versions?</div>
+  <div style="--c:#197EC6"><b>3. Assess risk</b>How exploitable? What could happen to patients?</div>
+  <div style="--c:#1999B2"><b>4. Fix and communicate</b>Update or mitigate; tell customers, regulators if needed, and the reporter.</div>
+</div>
+<p style="font-size:8pt;color:var(--muted)">You may not hear every detail afterward: information is need-to-know until a fix is ready. That is normal, not a sign your report was ignored.</p>
+
+<div class="box tint">
+  <p class="small" style="margin:0"><b>This week, find and write down two things.</b> To adapt these triggers for your team, use the <a href="../templates/engagement-checklist.docx">engagement checklist template</a>.</p>
+  <div class="fill"><div>Our internal channel for suspected product vulnerabilities:<span></span></div><div>Our published vulnerability disclosure policy:<span></span></div></div>
+</div>
+<p class="fine">CardiaPace and FlowGuard are fictional devices. Training material, not legal or regulatory advice.</p>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 05 · CC BY 4.0</span><span>Page 2 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+</body>
+</html>

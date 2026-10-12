@@ -1,0 +1,20 @@
+cff-version: 1.2.0
+title: "Product Security in One Hour: a free, self-guided course"
+message: If you use or adapt this course, please cite it as below.
+type: dataset
+authors:
+  - family-names: Hillyer
+    given-names: Matt
+version: "1.0"
+date-released: "2026-10-12"
+license: CC-BY-4.0
+repository-code: https://github.com/mjhillyer/Product-Security-in-One-Hour
+url: https://mjhillyer.github.io/Product-Security-in-One-Hour/
+keywords:
+  - product security
+  - medical device cybersecurity
+  - secure by design
+  - FDA 524B
+  - EU MDR
+  - SBOM
+  - training

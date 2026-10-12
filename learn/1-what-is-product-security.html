@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>What is product security? | Product Security in One Hour</title>
+<meta name="description" content="Why connected medical devices need their own kind of security, how a security weakness becomes patient harm, what makes a product a “cyber device”, and what a product security program does.">
+<link rel="canonical" href="https://mjhillyer.github.io/Product-Security-in-One-Hour/learn/1-what-is-product-security.html">
+<meta property="og:site_name" content="Product Security in One Hour">
+<meta property="og:title" content="What is product security?">
+<meta property="og:description" content="Why connected medical devices need their own kind of security, how a security weakness becomes patient harm, what makes a product a “cyber device”, and what a product security program does.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mjhillyer.github.io/Product-Security-in-One-Hour/learn/1-what-is-product-security.html">
+<meta property="og:image" content="https://mjhillyer.github.io/Product-Security-in-One-Hour/assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body data-module="m1">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+      <span>Product Security in One Hour<small>Free self-guided course</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="var l=document.getElementById('navlinks');l.classList.toggle('open');this.setAttribute('aria-expanded',l.classList.contains('open'))">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="../index.html">Overview</a>
+      <a href="../learn/start.html" class="current">Course</a>
+      <a href="../guides.html">Reference guides</a>
+      <a href="../index.html#training">Team training</a>
+      <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour">GitHub</a>
+      <a href="../learn/start.html" class="nav-cta">Start the course →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="course">
+  <aside class="side" aria-label="Course modules">
+    <div id="course-nav"></div>
+    <div class="side-links">
+      <a class="side-link" href="../guides.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>Reference guides</a>
+      <a class="side-link pro" href="../index.html#training"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>Training for your team</a>
+    </div>
+  </aside>
+  <main class="lesson" id="main">
+<div class="crumb"><a href="../index.html">Overview</a> / <a href="start.html">Course</a> / Module 1</div>
+    <span class="eyebrow">Module 1 · 10 minutes</span>
+    <h1>What is product security?</h1>
+    <p class="lede">
+      A medical device that runs software can be attacked, and an attack on a device can hurt a patient. Product security is the work of preventing that, for as long as the device is in use.
+    </p>
+
+    <div class="objectives">
+      <h4>In this module</h4>
+      <ul>
+        <li>Why connected medical devices need a different approach from office IT</li>
+        <li>How a security weakness can turn into patient harm</li>
+        <li>Confidentiality, integrity and availability, and why availability of therapy matters</li>
+        <li>What makes a product a “cyber device” under US law</li>
+        <li>How product security differs from enterprise IT security and from privacy</li>
+      </ul>
+    </div>
+
+    <h2>Why connected devices are different</h2>
+    <p>
+      <strong>Product security</strong> (in full, product cybersecurity) is the work of making sure a product, and everything
+      it depends on, can resist, detect and recover from attacks for as long as it is in use. For a medical device,
+      “everything it depends on” includes the device itself, its software and firmware, the apps and cloud services it
+      talks to, the tools used to update and service it, and the third-party components inside all of these.
+    </p>
+    <p>
+      Most people meet security at work: passwords, phishing training, forced laptop updates. That is
+      <strong>enterprise IT security</strong>, which protects an organization's own computers and data. Product security
+      protects what the organization makes and sells, which then lives in hospitals, clinics and homes the manufacturer
+      doesn't control. Four things make that harder for medical devices, shown here with the course's fictional devices
+      (see <a href="../guides/meet-the-devices.html">Meet the Devices</a>).
+    </p>
+
+    <div class="q-grid">
+      <div class="q-card" style="--qc:#9C3396"><span class="q-n">1</span>
+        <h4>Patients can be harmed</h4>
+        <p>When an office laptop is attacked, the usual worst case is lost data. When a therapy device is attacked, it's a
+          patient who gets the wrong therapy, no therapy or a missed alarm.</p>
+        <span class="q-mod">Stakes · CardiaPace pacemaker</span></div>
+      <div class="q-card" style="--qc:#7E44A9"><span class="q-n">2</span>
+        <h4>Many patients at once</h4>
+        <p>Connected devices share infrastructure: a cloud portal, an update server, a drug library. One weakness there can
+          reach every patient using the product. This is <strong>multi-patient harm</strong>, the scenario regulators worry about most.</p>
+        <span class="q-mod">Scale · FlowGuard infusion pumps</span></div>
+      <div class="q-card" style="--qc:#197EC6"><span class="q-n">3</span>
+        <h4>Long service lives</h4>
+        <p>A phone is replaced every few years. A surgical robot may be in service for 15 years, long after its operating
+          system stops getting security fixes.</p>
+        <span class="q-mod">Time · OrionArm surgical robot</span></div>
+      <div class="q-card" style="--qc:#1999B2"><span class="q-n">4</span>
+        <h4>Environments you don't run</h4>
+        <p>Hospitals run their own networks; patients use their own phones and home Wi-Fi. The manufacturer designs for places
+          it can't see or manage, and shares responsibility with the people who run them.</p>
+        <span class="q-mod">Control · DermaLens triage app</span></div>
+    </div>
+
+    <p>
+      Devices also can't always be changed quickly. A software change usually has to be verified and validated, may need
+      regulatory review, and sometimes needs a technician or clinic visit to install. An implanted pacemaker can't download
+      a patch overnight like a phone app. That is why security has to be designed in
+      from the start, the subject of <a href="2-secure-by-design.html">Module 2</a>.
+    </p>
+
+    <div class="callout warn">
+      <span class="c-title">Common pitfall</span>
+      <p>“The device is on the hospital's network, so the hospital's IT team handles security.” Hospitals do share the work,
+        but they can only protect what the manufacturer makes protectable. They can't add authentication to a pump that
+        doesn't support it, or patch an operating system the manufacturer hasn't validated. And ransomware spreading
+        through a hospital network hits whatever it can reach, whether or not anyone was aiming at the device.</p>
+    </div>
+
+    <h2>Safety and security: two sides of one goal</h2>
+    <p>
+      Device teams already know safety risk management: identify hazards, estimate the risk of harm, control it, and check
+      the controls work. The international standard for this is <strong>ISO 14971</strong>. Security adds a
+      new kind of cause. A hazard can now be triggered <em>on purpose</em>, by someone exploiting a weakness, not only by
+      a component failure or a use error.
+    </p>
+    <p>
+      The chain below shows how. Security work focuses on the left side (who could attack, through which weakness, with what
+      effect); safety work on the right (the hazardous situation and the harm). They meet in the middle, and information
+      has to flow both ways.
+    </p>
+
+    <figure class="figure">
+      <svg viewBox="0 0 960 336" role="img" aria-labelledby="m1-chain-t m1-chain-d"><title id="m1-chain-t">From a security weakness to patient harm</title><desc id="m1-chain-d">Five boxes from left to right: threat, vulnerability, security event, hazardous situation and harm, each with a FlowGuard example below. A bracket over the first three is labeled security risk management; a bracket over the last three is labeled safety risk management. They overlap at the security event.</desc>
+        <defs><marker id="m1-ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10z" fill="#9aa8c2"/></marker></defs>
+        <g font-family="Inter, -apple-system, Segoe UI, sans-serif">
+          <path d="M24 58 V46 H564 V58" fill="none" stroke="#a78bfa" stroke-width="2"/>
+          <text x="24" y="34" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#c4b5fd">SECURITY RISK MANAGEMENT (E.G., AAMI SW96)</text>
+          <path d="M396 100 V88 H936 V100" fill="none" stroke="#22d3ee" stroke-width="2"/>
+          <text x="936" y="78" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#67e8f9" text-anchor="end">SAFETY RISK MANAGEMENT (ISO 14971)</text>
+
+          <rect x="24" y="112" width="168" height="86" rx="10" fill="#131c30" stroke="#9C3396" stroke-width="2"/>
+          <text x="108" y="148" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">Threat</text>
+          <text x="108" y="172" font-size="13" fill="#9aa8c2" text-anchor="middle">who or what attacks</text>
+          <rect x="210" y="112" width="168" height="86" rx="10" fill="#131c30" stroke="#7E44A9" stroke-width="2"/>
+          <text x="294" y="148" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">Vulnerability</text>
+          <text x="294" y="172" font-size="13" fill="#9aa8c2" text-anchor="middle">the weakness used</text>
+          <rect x="396" y="112" width="168" height="86" rx="10" fill="#131c30" stroke="#197EC6" stroke-width="2"/>
+          <text x="480" y="148" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">Security event</text>
+          <text x="480" y="172" font-size="13" fill="#9aa8c2" text-anchor="middle">what changes</text>
+          <rect x="582" y="112" width="168" height="86" rx="10" fill="#131c30" stroke="#198CB5" stroke-width="2"/>
+          <text x="666" y="140" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">Hazardous</text>
+          <text x="666" y="160" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">situation</text>
+          <text x="666" y="182" font-size="13" fill="#9aa8c2" text-anchor="middle">patient exposed</text>
+          <rect x="768" y="112" width="168" height="86" rx="10" fill="#131c30" stroke="#1999B2" stroke-width="2"/>
+          <text x="852" y="148" font-size="17" font-weight="800" fill="#e9eefb" text-anchor="middle">Harm</text>
+          <text x="852" y="172" font-size="13" fill="#9aa8c2" text-anchor="middle">injury or worse</text>
+
+          <line x1="193" y1="155" x2="208" y2="155" stroke="#9aa8c2" stroke-width="2" marker-end="url(#m1-ah)"/>
+          <line x1="379" y1="155" x2="394" y2="155" stroke="#9aa8c2" stroke-width="2" marker-end="url(#m1-ah)"/>
+          <line x1="565" y1="155" x2="580" y2="155" stroke="#9aa8c2" stroke-width="2" marker-end="url(#m1-ah)"/>
+          <line x1="751" y1="155" x2="766" y2="155" stroke="#9aa8c2" stroke-width="2" marker-end="url(#m1-ah)"/>
+
+          <text x="24" y="226" font-size="12" font-weight="700" letter-spacing="1.2" fill="#6f7f9c">EXAMPLE · FLOWGUARD (FICTIONAL)</text>
+          <g font-size="13.5" fill="#c8d3e8" text-anchor="middle">
+            <rect x="24" y="238" width="168" height="88" rx="8" fill="#111827" stroke="#22304c"/>
+            <text x="108" y="268">Ransomware on</text><text x="108" y="286">the hospital</text><text x="108" y="304">network</text>
+            <rect x="210" y="238" width="168" height="88" rx="8" fill="#111827" stroke="#22304c"/>
+            <text x="294" y="268">Drug-library</text><text x="294" y="286">server accepts</text><text x="294" y="304">unsigned files</text>
+            <rect x="396" y="238" width="168" height="88" rx="8" fill="#111827" stroke="#22304c"/>
+            <text x="480" y="268">Dose limits in</text><text x="480" y="286">the library are</text><text x="480" y="304">altered</text>
+            <rect x="582" y="238" width="168" height="88" rx="8" fill="#111827" stroke="#22304c"/>
+            <text x="666" y="268">Pumps allow a</text><text x="666" y="286">dose above the</text><text x="666" y="304">safe limit</text>
+            <rect x="768" y="238" width="168" height="88" rx="8" fill="#111827" stroke="#22304c"/>
+            <text x="852" y="268">Overdose for</text><text x="852" y="286">any patient on</text><text x="852" y="304">that drug</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>A security weakness becomes a patient-safety problem when it leads to a hazardous situation. In this FlowGuard example, one weakness on one server can reach every pump that loads the drug library.</figcaption>
+    </figure>
+
+    <div class="callout reg">
+      <span class="c-title">Where the standards connect</span>
+      <p>ISO 14971 explicitly includes data and systems security in its scope. ANSI/AAMI SW96, a security risk management
+        standard that FDA recognizes, describes how manufacturers run a security risk process alongside ISO 14971, so that
+        security risks that could lead to harm flow into the safety risk file. FDA expects the two processes to be separate
+        but linked: safety teams own hazards and harm, and security teams bring the “on purpose” causes.</p>
+    </div>
+
+    <h2>Confidentiality, integrity and availability</h2>
+    <p>
+      Security people describe what they protect with three properties. For medical devices, their order of importance is
+      often the reverse of what people expect.
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:19%">Property</th><th style="width:36%">What it means</th><th>Device example</th></tr></thead>
+      <tbody>
+        <tr><td>Confidentiality</td><td>Only the right people and systems can see the data.</td><td>DermaLens images and triage results are health data. A leak is a privacy harm and a regulatory problem.</td></tr>
+        <tr><td>Integrity</td><td>Data, settings, software and commands can't be changed without authorization, and changes can be detected.</td><td>If someone could change CardiaPace pacing settings or FlowGuard dose limits, patients could be harmed directly.</td></tr>
+        <tr><td>Availability</td><td>The device and its functions work when they're needed.</td><td>If ransomware locks the OrionArm console, the day's surgeries are postponed.</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      For a device that delivers therapy, availability means <strong>availability of therapy</strong>: the pump infuses, the
+      pacemaker paces, the robot is ready for the surgery list. Not every loss of availability is an attack (a cloud outage
+      can stop DermaLens results for a day), but the design question is the same: what happens to the patient then?
+    </p>
+    <div class="callout">
+      <span class="c-title">Patient safety lens</span>
+      <p>For therapy-delivering devices, integrity and availability usually matter more than confidentiality. A leaked
+        heart-rhythm report is serious; a changed pacing setting can be fatal. That is why device security work starts from
+        the question “what could this do to a patient?” rather than “what data could be stolen?”</p>
+    </div>
+
+    <h2>What makes a product a “cyber device”?</h2>
+    <p>
+      In the United States, the law has a name for devices that need this attention. <strong>Section 524B</strong> of the
+      Federal Food, Drug, and Cosmetic Act (FD&amp;C Act), added at the end of 2022 and in force for submissions since March 2023,
+      defines a <strong>cyber device</strong> as one that meets all three of these conditions:
+    </p>
+    <ol>
+      <li>It includes software that the manufacturer validated, installed or authorized, as the device or in the device.</li>
+      <li>It has the ability to connect to the internet.</li>
+      <li>It has technological characteristics that could be vulnerable to cybersecurity threats.</li>
+    </ol>
+    <p>
+      For a cyber device, the premarket submission (the application to FDA before the device can be sold) must include a
+      plan for monitoring and addressing vulnerabilities after release, evidence of processes that give reasonable assurance
+      the device is secure (including providing updates and patches), and a <strong>software bill of materials (SBOM)</strong>:
+      a list of the software components inside the product. Modules 3 and 4 cover these in more detail.
+    </p>
+    <p>
+      The second condition sounds narrow, but FDA reads it broadly. A device that can reach the internet by any path,
+      including through a phone, a home transmitter, a hospital network, Bluetooth or a service port, may qualify. All four
+      devices in this course would be treated as cyber devices. CardiaPace's implant never touches the internet directly,
+      but its home transmitter does.
+    </p>
+    <div class="callout tip">
+      <span class="c-title">What it means for your role</span>
+      <ul>
+        <li><strong>Product owners and program managers:</strong> assume a new product with software is a cyber device unless regulatory concludes otherwise, and plan the security work from the start.</li>
+        <li><strong>Engineers:</strong> any connection counts, including debug and service ports, so list them all.</li>
+        <li><strong>Quality and regulatory:</strong> the cyber device determination and its rationale belong in the design history.</li>
+      </ul>
+    </div>
+    <p>
+      Other regions don't use the term, but reach a similar place: the EU's medical device regulations, for example, require
+      software to be protected against unauthorized access. <a href="3-regulations-standards.html">Module 3</a> gives the global tour.
+    </p>
+    <div class="callout reg">
+      <span class="c-title">Not legal advice</span>
+      <p>This course is training, not legal or regulatory advice; regulatory content is current as of October 2026. Your
+        regulatory team owns the interpretation for your products.</p>
+    </div>
+
+    <h2>The product security program</h2>
+    <p>
+      A <strong>product security program</strong> is how an organization makes all of this routine: the people, processes and
+      tools that build security into every product and keep it there until the product is retired. It sits next to two
+      neighbors that people often confuse with it.
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:14%"></th><th>Enterprise IT security</th><th>Privacy</th><th>Product security</th></tr></thead>
+      <tbody>
+        <tr><td>Protects</td><td>The company's own computers, networks and data</td><td>People's personal information and how it is used</td><td>The products the company sells, and the patients and customers who use them</td></tr>
+        <tr><td>Typical work</td><td>Employee accounts, laptops, email filtering, office networks</td><td>Consent, data minimization, privacy notices, data subject rights</td><td>Secure design, threat modeling, security testing, SBOMs, vulnerability handling, customer security documentation, updates</td></tr>
+        <tr><td>Example</td><td>Patching the finance team's laptops</td><td>Deciding how long DermaLens keeps patient images</td><td>Making sure DermaLens images are encrypted and the app's components are monitored for vulnerabilities</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      The three overlap, so the teams work together. A simple test: if the task protects something you ship, or the patients and customers who use it, it's product security.
+      If it protects your own offices, staff and corporate systems, it's enterprise IT. If it's about what personal data you
+      collect and why, it's privacy.
+    </p>
+    <p>A product security program spans the whole life of a product:</p>
+    <ul>
+      <li><strong>Before release (premarket):</strong> design security in, analyze threats and risks, define and test security requirements, and prepare what regulators and customers need to see.</li>
+      <li><strong>After release (postmarket):</strong> watch for new vulnerabilities, accept reports from researchers, fix problems, ship updates, tell customers what to do, and report to regulators when required.</li>
+      <li><strong>At end of support:</strong> tell customers when support ends and what that means for them.</li>
+    </ul>
+    <p>
+      Many organizations have a <strong>product security incident response team (PSIRT)</strong> that handles vulnerability
+      reports and incidents for products. <a href="4-before-after-release.html">Module 4</a> walks through these activities,
+      and <a href="5-your-role.html">Module 5</a> covers who does what.
+    </p>
+
+    <div class="callout example">
+      <span class="c-title">From the record</span>
+      <p>In August 2017, FDA announced a firmware update for implanted pacemakers made by Abbott (formerly St. Jude Medical),
+        after vulnerabilities were found that could let someone reprogram them with commercially available equipment. The
+        update made the pacemakers accept commands only from an authorized programmer or transmitter, and needed a short
+        in-person clinic visit. There were no reports of patient harm. The update itself carried a small clinical risk, so
+        patients and doctors decided together whether to apply it: for devices, even a security fix is a patient-safety decision.</p>
+    </div>
+
+    <div class="callout tip">
+      <span class="c-title">Practical tip</span>
+      <p>Find out who your product security team is and how to reach them before you need them. Ask early: a five-minute
+        question during design saves weeks of rework after testing. Terms are defined in the <a href="../guides/glossary.html">Glossary</a>.</p>
+    </div>
+
+    <div class="try"><div class="try-in">
+      <div class="try-head"><span class="eyebrow">Try it</span><span class="try-time">≈ 3 min</span></div>
+      <h3>Trace one path from weakness to harm</h3>
+      <p>Pick a product you work on, or one of the four devices. Choose one connection it has: a radio link, a network, an app,
+        a cloud service, a service port or an update path. Then write down:</p>
+      <ol>
+        <li>The chain, one short phrase each: threat, vulnerability, security event, hazardous situation, harm.</li>
+        <li>Which property is mainly at stake: confidentiality, integrity or availability.</li>
+        <li>Whether the product is likely a cyber device, and why.</li>
+      </ol>
+      <details class="answer">
+        <summary>Compare with a worked example</summary>
+        <div class="answer-body">
+          <p><strong>Product:</strong> CardiaPace. <strong>Connection:</strong> the short-range radio link between the bedside home transmitter and the implant.</p>
+          <div class="tbl-wrap"><table class="tbl">
+            <thead><tr><th style="width:30%">Link in the chain</th><th>CardiaPace</th></tr></thead>
+            <tbody>
+              <tr><td>Threat</td><td>Someone with a home transmitter they have modified.</td></tr>
+              <tr><td>Vulnerability</td><td>The implant accepts programming commands from any transmitter, without checking it is authorized.</td></tr>
+              <tr><td>Security event</td><td>Pacing settings are changed without authorization.</td></tr>
+              <tr><td>Hazardous situation</td><td>The patient is paced inappropriately.</td></tr>
+              <tr><td>Harm</td><td>Injury, or worse, for a patient who depends on the pacemaker.</td></tr>
+            </tbody>
+          </table></div>
+          <p><b>Property at stake:</b> integrity, because therapy settings were changed. If the same weakness were used to drain the
+            implant's battery instead, it would be availability of therapy.</p>
+          <p><b>Cyber device?</b> Almost certainly: manufacturer software, internet access through the home transmitter (FDA's broad
+            reading), and a radio link that could be vulnerable. Confirm with regulatory and record the rationale.</p>
+          <p>Notice where the fix sits: an implant that obeys only authorized transmitters is a design decision, and hard to change
+            after implant. That is <a href="2-secure-by-design.html">Module 2</a>.</p>
+        </div>
+      </details>
+    </div></div>
+    <div class="done-row">
+      <p>Finished this module? Your progress is saved only in this browser.</p>
+      <button class="btn btn-ghost btn-sm done-btn" id="done-btn" type="button" aria-pressed="false">Mark module complete</button>
+    </div>
+    <nav class="pager" id="pager" aria-label="Module navigation"></nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid four">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+          <span>Product Security in One Hour<small>Free self-guided course</small></span>
+        </div>
+        <p class="muted" style="font-size:13.5px;max-width:360px">
+          A free, open-source introduction to medical device product security for everyone on the product team: what it is, Secure by Design, global regulations, and the device lifecycle.
+        </p>
+      </div>
+      <div>
+        <h4>Course</h4>
+        <a href="../learn/start.html">Start here</a>
+        <a href="../learn/3-regulations-standards.html">Regulations</a>
+        <a href="../learn/6-next-steps.html">Next steps</a>
+        <a href="../index.html#agenda">Agenda</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="../guides.html">Reference guides</a>
+        <a href="../guides/pdf/product-security-reference-pack.zip">Download all (ZIP)</a>
+        <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour">Source on GitHub</a>
+        <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour/blob/main/LICENSE-DOCS">License (CC BY 4.0)</a>
+      </div>
+      <div>
+        <h4>In-depth training</h4>
+        <a href="../index.html#training">Training for your team</a>
+        <a href="mailto:matt@matthillyer.io?subject=Product%20security%20training">matt@matthillyer.io</a>
+        <a href="https://mjhillyer.github.io/Product-Security-Maturity-Assessment-Program/">Product Security Maturity Framework</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>Product Security in One Hour · Matt Hillyer LLC</span>
+      <span>Content licensed under CC BY 4.0 · Code under MIT</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/course.js"></script>
+</body>
+</html>

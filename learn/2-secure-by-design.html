@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../assets/css/site.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Secure by Design | Product Security in One Hour</title>
+<meta name="description" content="Why security built into a medical device's design works better and costs less, the core secure design principles, threat modeling and security risk in plain terms, SBOMs, and the trade-offs that make devices different.">
+<link rel="canonical" href="https://mjhillyer.github.io/Product-Security-in-One-Hour/learn/2-secure-by-design.html">
+<meta property="og:site_name" content="Product Security in One Hour">
+<meta property="og:title" content="Secure by Design">
+<meta property="og:description" content="Why security built into a medical device's design works better and costs less, the core secure design principles, threat modeling and security risk in plain terms, SBOMs, and the trade-offs that make devices different.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://mjhillyer.github.io/Product-Security-in-One-Hour/learn/2-secure-by-design.html">
+<meta property="og:image" content="https://mjhillyer.github.io/Product-Security-in-One-Hour/assets/social-card.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+<body data-module="m2">
+
+<nav class="nav">
+  <div class="nav-inner">
+    <a class="brand" href="../index.html">
+      <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+      <span>Product Security in One Hour<small>Free self-guided course</small></span>
+    </a>
+    <button class="nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false" onclick="var l=document.getElementById('navlinks');l.classList.toggle('open');this.setAttribute('aria-expanded',l.classList.contains('open'))">☰</button>
+    <div class="nav-links" id="navlinks">
+      <a href="../index.html">Overview</a>
+      <a href="../learn/start.html" class="current">Course</a>
+      <a href="../guides.html">Reference guides</a>
+      <a href="../index.html#training">Team training</a>
+      <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour">GitHub</a>
+      <a href="../learn/start.html" class="nav-cta">Start the course →</a>
+    </div>
+  </div>
+</nav>
+
+<div class="course">
+  <aside class="side" aria-label="Course modules">
+    <div id="course-nav"></div>
+    <div class="side-links">
+      <a class="side-link" href="../guides.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"/></svg>Reference guides</a>
+      <a class="side-link pro" href="../index.html#training"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 20v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9.5" cy="7" r="4"/><path d="M22 20v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>Training for your team</a>
+    </div>
+  </aside>
+  <main class="lesson" id="main">
+<div class="crumb"><a href="../index.html">Overview</a> / <a href="start.html">Course</a> / Module 2</div>
+    <span class="eyebrow">Module 2 · 12 minutes</span>
+    <h1>Secure by Design</h1>
+    <p class="lede">
+      Security works best, and costs least, when it is part of a device's design from the first sketch. This module covers the principles, the risk thinking and the trade-offs behind that idea.
+    </p>
+
+    <div class="objectives">
+      <h4>In this module</h4>
+      <ul>
+        <li>Why security built in early works better, and costs less, than security added late</li>
+        <li>The core secure design principles, with a device example of each</li>
+        <li>Threat modeling and security risk in plain terms, and FDA's security control categories</li>
+        <li>Third-party and open-source software, and the software bill of materials (SBOM)</li>
+        <li>Where security has to be balanced against usability, emergency access, workflow and validation</li>
+      </ul>
+    </div>
+
+    <h2>Built in, not bolted on</h2>
+    <p>
+      Secure by design means treating security as a property of the design, like safety or reliability, rather than something
+      added once the product works. As <a href="1-what-is-product-security.html">Module 1</a> showed, changing a released
+      device is slow, validated work, and some devices can't be changed without a clinic visit.
+    </p>
+    <p>
+      FDA calls the organized way of doing this a <strong>Secure Product Development Framework (SPDF)</strong>: a set of
+      processes, built into the quality management system, that bring security into every phase of development and keep it
+      going after release. It isn't a separate bureaucracy. It adds security to the design controls, reviews and risk files
+      your teams already use.
+    </p>
+    <div class="plan">
+      <div><b>Requirements</b><p>Security requirements sit beside functional ones.</p></div>
+      <div><b>Design</b><p>The architecture is threat-modeled while it is still a sketch.</p></div>
+      <div><b>Build and verify</b><p>Secure coding, careful choice of components, and security testing, including penetration testing (experts trying to break in).</p></div>
+      <div><b>Release and beyond</b><p>An SBOM, vulnerability monitoring and updates, covered in Module 4.</p></div>
+    </div>
+    <div class="callout reg">
+      <span class="c-title">Regulatory link</span>
+      <p>FDA's premarket cybersecurity guidance recommends an SPDF built into the quality management system. The international
+        standard IEC 81001-5-1, which FDA recognizes, describes security activities across the health software lifecycle.
+        <a href="3-regulations-standards.html">Module 3</a> covers both.</p>
+    </div>
+
+    <h3>Why late fixes cost more</h3>
+    <p>
+      A flaw found in a design review costs a conversation. Found by a penetration tester just before submission, it means
+      rework, re-testing and perhaps a delayed launch. Found in the field, it means validating a fix, getting it onto every
+      unit, telling customers, and sometimes a clinic visit for every patient. Some decisions, such as whether CardiaPace's
+      radio link checks who is sending commands, are nearly irreversible once devices are implanted.
+    </p>
+
+    <figure class="figure">
+      <svg viewBox="0 0 960 432" role="img" aria-labelledby="m2-cost-t m2-cost-d"><title id="m2-cost-t">The effort to fix a security flaw rises at every stage of a device's life</title><desc id="m2-cost-d">Six bars of increasing height for requirements, design, implementation, verification, submission and in the field, with what a fix looks like at each stage. A bracket over the first two bars reads: design, the cheapest place to fix. A bracket over the last two reads: after release, every unit and every customer. Heights are illustrative.</desc>
+        <g font-family="Inter, -apple-system, Segoe UI, sans-serif">
+          <text x="40" y="26" font-size="12.5" font-weight="700" letter-spacing="1.2" fill="#6f7f9c">EFFORT TO FIX (ILLUSTRATIVE, NOT TO SCALE)</text>
+
+          <path d="M40 252 V242 H312 V252" fill="none" stroke="#22d3ee" stroke-width="2"/>
+          <text x="40" y="232" font-size="13.5" font-weight="700" fill="#67e8f9">Design: cheapest place to fix</text>
+          <path d="M648 82 V72 H920 V82" fill="none" stroke="#e879f9" stroke-width="2"/>
+          <text x="920" y="62" font-size="13.5" font-weight="700" fill="#f0abfc" text-anchor="end">After release: every unit, every customer</text>
+
+          <rect x="40"  y="300" width="120" height="30"  rx="6" fill="#1999B2"/>
+          <rect x="192" y="275" width="120" height="55"  rx="6" fill="#198CB5"/>
+          <rect x="344" y="240" width="120" height="90"  rx="6" fill="#197EC6"/>
+          <rect x="496" y="195" width="120" height="135" rx="6" fill="#3a4fb0"/>
+          <rect x="648" y="145" width="120" height="185" rx="6" fill="#7E44A9"/>
+          <rect x="800" y="92"  width="120" height="238" rx="6" fill="#9C3396"/>
+          <line x1="28" y1="330" x2="932" y2="330" stroke="#22304c" stroke-width="2"/>
+
+          <g font-size="14" font-weight="700" fill="#e9eefb" text-anchor="middle">
+            <text x="100" y="354">Requirements</text>
+            <text x="252" y="354">Design</text>
+            <text x="404" y="354">Implementation</text>
+            <text x="556" y="354">Verification</text>
+            <text x="708" y="354">Submission</text>
+            <text x="860" y="354">In the field</text>
+          </g>
+          <g font-size="12.5" fill="#9aa8c2" text-anchor="middle">
+            <text x="100" y="378">Edit a sentence</text><text x="100" y="394">in a requirement</text>
+            <text x="252" y="378">Redraw the</text><text x="252" y="394">architecture or</text><text x="252" y="410">swap a component</text>
+            <text x="404" y="378">Rewrite and</text><text x="404" y="394">re-review code</text>
+            <text x="556" y="378">Rework, re-test,</text><text x="556" y="394">update the</text><text x="556" y="410">risk file</text>
+            <text x="708" y="378">Delay launch,</text><text x="708" y="394">redo documents</text><text x="708" y="410">and evidence</text>
+            <text x="860" y="378">Validate a fix,</text><text x="860" y="394">ship it to every</text><text x="860" y="410">unit, or replace</text>
+          </g>
+        </g>
+      </svg>
+      <figcaption>The later a flaw is found, the more it costs to fix and the more people the fix touches. Example: CardiaPace (fictional). Authenticating radio commands is a design decision early, and a firmware update with a clinic visit per patient late.</figcaption>
+    </figure>
+
+    <div class="callout example">
+      <span class="c-title">From the record</span>
+      <p>In March 2019, FDA issued a safety communication about the Conexus wireless protocol used by certain Medtronic
+        implantable defibrillators, programmers and home monitors. The protocol had no authentication, authorization or
+        encryption, though using the weakness required short radio range. Because the gap was in the protocol itself, patches
+        rolled out model by model at routine office visits, with the public advisory still being updated in 2021. No patient
+        harm was reported.</p>
+    </div>
+
+    <h2>Core design principles</h2>
+    <p>
+      A handful of principles show up in almost every secure device, from implant firmware to cloud services. You already know
+      several from everyday life: a hotel key card that opens only your room is least privilege; a vault inside a locked bank
+      is defense in depth.
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:22%">Principle</th><th style="width:40%">In plain terms</th><th>Device example</th></tr></thead>
+      <tbody>
+        <tr><td>Least privilege</td><td>Every person and component gets only the access it needs.</td><td>DermaLens reviewers can view triage results but not change the model.</td></tr>
+        <tr><td>Defense in depth</td><td>Several independent layers, so one failure doesn't expose the patient.</td><td>FlowGuard's layers, shown in the figure below.</td></tr>
+        <tr><td>Secure by default</td><td>Ship in the safest configuration; customers opt in to riskier options.</td><td>OrionArm ships with remote service off and no shared factory password.</td></tr>
+        <tr><td>Minimize attack surface</td><td>Remove every port, service and feature the product doesn't need. The attack surface is every way in.</td><td>Production CardiaPace transmitters have the debug port disabled.</td></tr>
+        <tr><td>Fail safe</td><td>When something goes wrong, the device falls back to a state that keeps the patient safe.</td><td>A FlowGuard pump that can't reach its server keeps the last good drug library.</td></tr>
+        <tr><td>Authenticate and authorize</td><td>Check who is connecting (authentication) and what they may do (authorization).</td><td>A CardiaPace implant obeys only an authorized clinic programmer.</td></tr>
+        <tr><td>Protect integrity</td><td>Software, settings and data can't be changed undetected. A signed update carries a digital signature the device checks before installing.</td><td>FlowGuard pumps reject unsigned firmware or drug libraries.</td></tr>
+        <tr><td>Log and detect</td><td>Record security-relevant events so problems can be noticed and investigated.</td><td>OrionArm logs who used remote service, when, and what changed.</td></tr>
+        <tr><td>Design for updates</td><td>Plan from day one how fixes will reach every device, safely, for its whole service life.</td><td>CardiaPace implant firmware needs a validated update path through the transmitter or clinic.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout">
+      <span class="c-title">Patient safety lens</span>
+      <p>For a medical device, “fail safe” means therapy continues safely, not that the device locks up. A pump that stops
+        infusing because a security certificate expired can harm a patient as surely as an attack. Good designs block unsafe
+        changes, keep safe therapy running, and tell the clinician.</p>
+    </div>
+
+    <h3>Defense in depth, in a picture</h3>
+    <p>
+      No single control is perfect: passwords leak and software has bugs. Defense in depth stacks independent layers, so an
+      attacker who gets past one still faces the next.
+    </p>
+    <figure class="figure">
+      <svg viewBox="0 0 960 468" role="img" aria-labelledby="m2-did-t m2-did-d"><title id="m2-did-t">Layered defenses around a FlowGuard infusion</title><desc id="m2-did-d">Four nested layers around the patient. Layer 1, outermost and dashed: the hospital network keeps pumps on their own network segment, run by the customer with manufacturer guidance. Layer 2: pumps and server prove who they are and traffic is encrypted. Layer 3: pumps accept only signed drug libraries and firmware. Layer 4, innermost: hard dose limits, alarms and logs in the pump itself. At the center: the patient receives a safe infusion.</desc>
+        <g font-family="Inter, -apple-system, Segoe UI, sans-serif" font-size="15" fill="#c8d3e8">
+          <rect x="16" y="14" width="928" height="440" rx="22" fill="#9C3396" fill-opacity="0.06" stroke="#9C3396" stroke-width="2" stroke-dasharray="9 7"/>
+          <circle cx="50" cy="48" r="13" fill="#9C3396"/><text x="50" y="53" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">1</text>
+          <text x="72" y="53"><tspan font-weight="800" fill="#e9eefb">Network:</tspan> pumps sit on their own hospital network segment (customer-run, with manufacturer guidance)</text>
+
+          <rect x="62" y="84" width="836" height="348" rx="18" fill="#7E44A9" fill-opacity="0.08" stroke="#7E44A9" stroke-width="2"/>
+          <circle cx="96" cy="118" r="13" fill="#7E44A9"/><text x="96" y="123" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">2</text>
+          <text x="118" y="123"><tspan font-weight="800" fill="#e9eefb">Connections:</tspan> pumps and server prove who they are; traffic is encrypted</text>
+
+          <rect x="108" y="154" width="744" height="256" rx="16" fill="#197EC6" fill-opacity="0.09" stroke="#197EC6" stroke-width="2"/>
+          <circle cx="142" cy="188" r="13" fill="#197EC6"/><text x="142" y="193" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">3</text>
+          <text x="164" y="193"><tspan font-weight="800" fill="#e9eefb">Integrity:</tspan> pumps accept only signed drug libraries and firmware</text>
+
+          <rect x="154" y="224" width="652" height="164" rx="14" fill="#1999B2" fill-opacity="0.1" stroke="#1999B2" stroke-width="2"/>
+          <circle cx="188" cy="258" r="13" fill="#1999B2"/><text x="188" y="263" font-size="13.5" font-weight="800" fill="#fff" text-anchor="middle">4</text>
+          <text x="210" y="263"><tspan font-weight="800" fill="#e9eefb">Device limits:</tspan> hard dose limits, alarms and logs in the pump itself</text>
+
+          <rect x="300" y="294" width="360" height="62" rx="31" fill="#131c30" stroke="#22d3ee" stroke-width="2"/>
+          <text x="480" y="331" font-size="16" font-weight="800" fill="#e9eefb" text-anchor="middle">Patient receives a safe infusion</text>
+        </g>
+      </svg>
+      <figcaption>Example: FlowGuard (fictional). Even if an attacker tampers with the drug-library server, unsigned files are rejected and the pump's own dose limits still apply.</figcaption>
+    </figure>
+
+    <div class="callout example">
+      <span class="c-title">From the record</span>
+      <p>In 2015, FDA issued a safety communication about the Hospira Symbiq infusion system after a researcher reported that an
+        unauthorized user could reach it over the hospital network and change the dose. FDA strongly encouraged hospitals to move
+        to other pumps; interim steps included closing two older remote-access services and changing a default password. No
+        adverse events were known. Unneeded services and default passwords are what the principles above prevent.</p>
+    </div>
+
+    <h2>Threat modeling and security risk</h2>
+    <p>
+      Principles say what good looks like; threat modeling shows where to apply them. <strong>Threat modeling</strong> is a
+      structured look at a design that asks plain questions: How does this product work, and what does it connect to? What
+      could someone do to it on purpose? What will we do about it? It works best as a team exercise (engineers, product,
+      clinical, product security), started while the architecture is on a whiteboard and updated as the design changes.
+    </p>
+
+    <h3>Rate exploitability, not probability</h3>
+    <p>
+      Safety risk management estimates the probability of harm, often from failure rates. Attacks don't follow failure rates.
+      Someone who finds a weakness can use it again and again, and once a method is published, anyone can. So security risk
+      assessment rates <strong>exploitability</strong> instead (how easy a weakness is to use, given the access, skill and tools
+      needed) together with the <strong>severity</strong> of the effect on patients. “No attacks have been reported” is not a
+      reason to rate a risk low. Risks that could lead to harm feed the safety risk file, as in Module 1.
+    </p>
+    <div class="callout example">
+      <span class="c-title">Worked example: OrionArm</span>
+      <p>The team finds that someone with stolen service credentials could connect remotely and change the console software.
+        That is reachable with only a password (high exploitability) and could affect a surgery (high severity). The response
+        becomes testable security requirements, such as: “Remote service sessions shall require multi-factor authentication
+        (a second proof beyond a password) and approval by an on-site user.”</p>
+    </div>
+
+    <h3>FDA's security control categories</h3>
+    <p>
+      FDA's premarket guidance recommends that a design address these categories of security control, and that the submission
+      show how. They make a useful checklist in any market.
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:27%">Control category</th><th style="width:36%">The design question</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Authentication</td><td>Who or what is connecting?</td><td>A clinic programmer proves itself to a CardiaPace implant.</td></tr>
+        <tr><td>Authorization</td><td>Can each user do only what it should?</td><td>Only pharmacy roles can publish a FlowGuard drug library.</td></tr>
+        <tr><td>Cryptography</td><td>Are we using well-established methods?</td><td>Standard encryption for DermaLens uploads.</td></tr>
+        <tr><td>Integrity</td><td>Would we detect unauthorized changes?</td><td>Signed OrionArm software updates.</td></tr>
+        <tr><td>Confidentiality</td><td>Is sensitive data seen only by the right people?</td><td>Encrypted patient data in the CardiaPace cloud portal.</td></tr>
+        <tr><td>Event detection and logging</td><td>Would we, or the customer, notice an attack?</td><td>OrionArm remote-session logs.</td></tr>
+        <tr><td>Resiliency and recovery</td><td>Does it keep working safely, and recover?</td><td>FlowGuard keeps the last good drug library.</td></tr>
+        <tr><td>Updatability</td><td>Can we deliver fixes to every unit in time?</td><td>A validated update path for CardiaPace transmitters.</td></tr>
+      </tbody>
+    </table></div>
+    <div class="callout reg">
+      <span class="c-title">Regulatory link</span>
+      <p>FDA expects threat modeling, security risk management linked to safety risk management, and architecture views showing
+        where controls sit. ANSI/AAMI SW96 describes the security risk process.</p>
+    </div>
+
+    <h2>Third-party software and the SBOM</h2>
+    <p>
+      Modern devices are largely assembled: most of the code in a typical product was written by someone else. It may be
+      commercial (licensed from a vendor, like OrionArm's console operating system), open-source (published for anyone to use,
+      like many of DermaLens's image libraries) or another off-the-shelf component. Whatever the source, you inherit its
+      weaknesses along with its features, and you are responsible for it in your product.
+    </p>
+    <p>
+      So choosing a component is a security decision. Is it maintained? Will it be supported as long as our product? Can we
+      update it in the field? OrionArm's 15-year service life outlasts most operating systems' support, so the team needs a
+      plan from the start. Open source is neither automatically safe nor automatically risky: all components need the same questions.
+    </p>
+    <p>
+      A <strong>software bill of materials (SBOM)</strong> is the product's ingredients list: every software component with its
+      name, version and supplier, plus, as FDA expects, its support status and end-of-support date. It is usually generated by
+      build tools in a machine-readable format such as SPDX or CycloneDX. When a flaw is announced in a popular library, an
+      accurate SBOM answers “which of our products are affected?” in minutes rather than weeks. For US cyber devices, the law
+      requires an SBOM in the premarket submission.
+    </p>
+    <div class="callout tip">
+      <span class="c-title">Practical tip</span>
+      <p>When your team proposes a new component, bring three facts to the design review: its version, who supports it, and
+        until when. If nobody knows the last answer, raise it with product security now, not in year eight.</p>
+    </div>
+
+    <h2>Trade-offs unique to devices</h2>
+    <p>
+      In office IT, the answer is often “lock it down”. In a medical device, every control also has to work for a nurse at
+      3&nbsp;a.m., a surgeon mid-procedure or a patient at home. Device teams balance security against five things.
+    </p>
+    <div class="tbl-wrap"><table class="tbl">
+      <thead><tr><th style="width:22%">Trade-off</th><th>Why it matters, with an example</th></tr></thead>
+      <tbody>
+        <tr><td>Usability</td><td>A control that's too hard gets worked around. Gloved nurses can't type long passwords on every FlowGuard pump, so the design might use badge taps.</td></tr>
+        <tr><td>Emergency access</td><td>Emergency teams must reach the device quickly. CardiaPace must stay programmable away from its usual clinic, so a design might rely on close physical proximity rather than a password nobody in the emergency room knows.</td></tr>
+        <tr><td>Clinical workflow</td><td>Updates and reboots have to fit the clinical day. An OrionArm update is scheduled with the hospital, never sprung between operations.</td></tr>
+        <tr><td>Performance and battery</td><td>Security uses computing power and energy. On an implant, every extra calculation draws on a battery that is replaced only by surgery.</td></tr>
+        <tr><td>Validation burden</td><td>Every software change needs verification and validation, sometimes regulatory review. That favors designs that make updates safe and routine.</td></tr>
+      </tbody>
+    </table></div>
+    <p>
+      Security controls can introduce hazards of their own: a lockout, a slow login or an update at the wrong moment can delay
+      care. So security decisions go through the same risk management as any other design decision. Good teams make trade-offs
+      explicitly: they involve clinical users early, look for controls that are both secure and easy, add compensating controls
+      where a strong one isn't possible, record the rationale in the risk file, and tell customers in the labeling what to do.
+    </p>
+    <div class="callout warn">
+      <span class="c-title">Common pitfall</span>
+      <p>Adding a strong control without asking the people who will use it. A password policy that ignores the clinical day leads
+        to shared logins and passwords taped to the device, leaving the product less secure than before. Test security features
+        with real users.</p>
+    </div>
+    <p>
+      Keep the <a href="../guides/secure-by-design.html">Secure by Design guide</a> handy in design reviews, and the
+      <a href="../guides/glossary.html">Glossary</a> for terms.
+    </p>
+
+    <div class="try"><div class="try-in">
+      <div class="try-head"><span class="eyebrow">Try it</span><span class="try-time">≈ 4 min</span></div>
+      <h3>Secure one feature by design</h3>
+      <p>Pick one feature of your product that connects to something: remote access, an app, an update path, a cloud upload.
+        No product to hand? Use OrionArm's <b>remote service access</b>, which lets the manufacturer's engineers diagnose consoles
+        and install updates from a service center. Write down:</p>
+      <ol>
+        <li>When you would threat-model it, and one thing someone could do with it on purpose.</li>
+        <li>How you would rate that risk, in terms of exploitability and severity.</li>
+        <li>Three or four controls, naming the principle each one applies.</li>
+        <li>One trade-off with clinical or service users, and how you would resolve it.</li>
+      </ol>
+      <details class="answer">
+        <summary>Compare with a worked example</summary>
+        <div class="answer-body">
+          <p><strong>Feature:</strong> OrionArm remote service access.</p>
+          <ol>
+            <li><b>When and what:</b> now, while the architecture is still being drawn. Threat: someone with stolen service credentials
+              connects to a console from anywhere and changes its software.</li>
+            <li><b>Risk:</b> high exploitability (reachable over the network with only a password) and high severity (it could affect a surgery).
+              Because patient harm is possible, it also feeds the safety risk file.</li>
+            <li><b>Controls:</b> remote access off until the hospital turns it on (secure by default); multi-factor authentication for each named
+              engineer, no shared password (authenticate and authorize); approval by an on-site user for each session (authorize); every session
+              logged (log and detect); only signed software installs (protect integrity). Together they are defense in depth.</li>
+            <li><b>Trade-off:</b> surgeons worry the on-site approval step could delay an urgent fix on a busy day. Don't drop the step, and don't
+              dismiss the concern. Work with clinical and service staff on a fast approval path, such as a one-tap approval at the console by the
+              charge nurse or biomedical engineer, and record the trade-off in the risk file.</li>
+          </ol>
+          <p>Notice what the team didn't choose: “no remote access at all” shrinks the attack surface, but over a 15-year life it makes fixes
+            slow and costly to deliver. Each step also produced evidence that regulators and hospital customers will expect to see, as
+            <a href="4-before-after-release.html">Module 4</a> explains.</p>
+        </div>
+      </details>
+    </div></div>
+    <div class="done-row">
+      <p>Finished this module? Your progress is saved only in this browser.</p>
+      <button class="btn btn-ghost btn-sm done-btn" id="done-btn" type="button" aria-pressed="false">Mark module complete</button>
+    </div>
+    <nav class="pager" id="pager" aria-label="Module navigation"></nav>
+  </main>
+</div>
+
+<footer class="footer">
+  <div class="wrap">
+    <div class="footer-grid four">
+      <div>
+        <div class="brand" style="margin-bottom:14px">
+          <span class="brand-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+          <span>Product Security in One Hour<small>Free self-guided course</small></span>
+        </div>
+        <p class="muted" style="font-size:13.5px;max-width:360px">
+          A free, open-source introduction to medical device product security for everyone on the product team: what it is, Secure by Design, global regulations, and the device lifecycle.
+        </p>
+      </div>
+      <div>
+        <h4>Course</h4>
+        <a href="../learn/start.html">Start here</a>
+        <a href="../learn/3-regulations-standards.html">Regulations</a>
+        <a href="../learn/6-next-steps.html">Next steps</a>
+        <a href="../index.html#agenda">Agenda</a>
+      </div>
+      <div>
+        <h4>Resources</h4>
+        <a href="../guides.html">Reference guides</a>
+        <a href="../guides/pdf/product-security-reference-pack.zip">Download all (ZIP)</a>
+        <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour">Source on GitHub</a>
+        <a href="https://github.com/mjhillyer/Product-Security-in-One-Hour/blob/main/LICENSE-DOCS">License (CC BY 4.0)</a>
+      </div>
+      <div>
+        <h4>In-depth training</h4>
+        <a href="../index.html#training">Training for your team</a>
+        <a href="mailto:matt@matthillyer.io?subject=Product%20security%20training">matt@matthillyer.io</a>
+        <a href="https://mjhillyer.github.io/Product-Security-Maturity-Assessment-Program/">Product Security Maturity Framework</a>
+      </div>
+    </div>
+    <div class="fine">
+      <span>Product Security in One Hour · Matt Hillyer LLC</span>
+      <span>Content licensed under CC BY 4.0 · Code under MIT</span>
+    </div>
+  </div>
+</footer>
+<script src="../assets/js/course.js"></script>
+</body>
+</html>

@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Product Security Across the Lifecycle | Product Security in One Hour</title>
+<meta name="description" content="A medical device's security isn't finished when it ships. Security activities and deliverables from first design to the last unit in service: premarket evidence, release, postmarket vulnerability handling, and end of support.">
+<style>
+.lc{display:block;width:100%;height:auto;margin:0 0 6pt;}
+.lc text{font-family:var(--sans);}
+.lc .ph{font-size:13px;font-weight:800;fill:#fff;letter-spacing:.07em;}
+.lc .phs{font-size:11px;font-weight:500;fill:#fff;opacity:.92;}
+.lc .act{font-size:12px;font-weight:500;fill:#1e293b;}
+.lc .colbg{fill:#f3f6fb;stroke:#d8e0ec;stroke-width:1;}
+.lc .outbg{fill:#fff;stroke:#d8e0ec;stroke-width:1;}
+.lc .outl{font-size:10.5px;font-weight:700;fill:#64748b;letter-spacing:.08em;}
+.lc .out{font-size:12px;font-weight:600;fill:#0f172a;}
+.lc .band{fill:#f0f7ff;stroke:#197EC6;stroke-width:1;}
+.lc .bandt{font-size:12px;font-weight:700;fill:#233884;}
+.lc .loop{fill:none;stroke:#9C3396;stroke-width:2;}
+.lc .loopt{font-size:12px;font-weight:700;fill:#9C3396;}
+.small{font-size:8.5pt;}
+.deliv{columns:2;column-gap:14pt;font-size:8.4pt;margin-bottom:5pt;}
+.deliv li{break-inside:avoid;margin:0 0 3pt;}
+.deliv .eg{color:var(--muted);}
+.steps{counter-reset:s;list-style:none;padding:0;margin:0 0 4pt;font-size:8.5pt;}
+.steps li{counter-increment:s;position:relative;padding-left:17pt;margin:0 0 3pt;}
+.steps li::before{content:counter(s);position:absolute;left:0;top:0;width:12pt;height:12pt;border-radius:3.5pt;background:var(--accent);color:#fff;font-size:7.4pt;font-weight:800;display:grid;place-items:center;}
+.risk{display:grid;grid-template-columns:1fr 1fr;gap:6pt;margin:3pt 0 5pt;}
+.risk .box p{font-size:8.3pt;margin:0 0 3pt;}
+.risk .box p:last-child{margin:0;}
+.box.ok{border-left:3px solid #1999B2;background:#effafb;}
+.eos{display:grid;grid-template-columns:repeat(3,1fr);gap:7pt;margin:4pt 0 5pt;}
+.eos>div{border:1px solid var(--line);border-top:3px solid var(--c);border-radius:6px;background:#fff;padding:4pt 7pt;font-size:8.3pt;}
+.eos .tag{display:block;}
+.eos h4{font-size:9pt;margin:0 0 2pt;color:var(--ink);}
+.fine{font-size:7.6pt;color:var(--dim);margin-top:6pt;}
+@media screen and (max-width:860px){.risk,.eos{grid-template-columns:1fr;gap:6pt;}.deliv{columns:1;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a href="../guides.html">← All guides</a>
+  <span class="tb-title">Product Security Across the Lifecycle</span>
+  <span class="tb-actions"><a class="tb-btn" href="pdf/lifecycle-map.pdf" download>Download PDF</a><button class="tb-btn" type="button" onclick="window.print()">Print</button></span>
+</div>
+<section class="sheet">
+  <header class="g-head">
+    <div>
+      <div class="g-kicker">Product Security in One Hour · Reference guide 04</div>
+      <h1>Product Security Across the Lifecycle</h1>
+      <p class="g-sub">A device's security isn't finished when it ships. It spans the <b>total product lifecycle (TPLC)</b>, from the first design idea until the last unit leaves service: dozens of releases in a few years for an app like DermaLens, about 15 years for a robot like OrionArm.</p>
+    </div>
+    <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+  </header>
+  <div class="g-body">
+<svg class="lc" viewBox="0 0 720 314" role="img" aria-labelledby="lc-t lc-d"><title id="lc-t">Security activities and key deliverables across the total product lifecycle</title>
+  <desc id="lc-d">Four phases left to right. Premarket (design, build, verify): security plan, threat modeling, security risk assessment, architecture views, requirements and controls, testing and penetration testing, SBOM, traceability. Release (submit and launch): submission content, security labeling, MDS2 form, customer documents, SBOM for customers, monitoring starts. Postmarket (monitor and maintain): vulnerability monitoring, coordinated vulnerability disclosure and a PSIRT, assessing risk to patients, patches and updates, customer communication, regulator reporting, ISAO information sharing, incident response. End of support (plan the exit): announce dates early, final updates, compensating controls, customer guidance, plan replacement, secure decommissioning, shared responsibility. A band underneath says security risk management, the SBOM and the design history stay current in every phase, and an arrow loops from postmarket back to premarket: postmarket findings feed the next design change and the next release.</desc>
+  <rect class="colbg" x="0" y="44" width="174" height="204" rx="5"/>
+  <rect class="colbg" x="182" y="44" width="174" height="204" rx="5"/>
+  <rect class="colbg" x="364" y="44" width="174" height="204" rx="5"/>
+  <rect class="colbg" x="546" y="44" width="174" height="204" rx="5"/>
+  <path d="M0,0 H166 L180,20 L166,40 H0 Z" fill="#9C3396"/>
+  <path d="M182,0 H348 L362,20 L348,40 H182 L196,20 Z" fill="#7E44A9"/>
+  <path d="M364,0 H530 L544,20 L530,40 H364 L378,20 Z" fill="#197EC6"/>
+  <path d="M546,0 H720 V40 H546 L560,20 Z" fill="#1999B2"/>
+  <text class="ph" x="12" y="18">PREMARKET</text><text class="phs" x="12" y="33">design, build, verify</text>
+  <text class="ph" x="204" y="18">RELEASE</text><text class="phs" x="204" y="33">submit and launch</text>
+  <text class="ph" x="386" y="18">POSTMARKET</text><text class="phs" x="386" y="33">monitor and maintain</text>
+  <text class="ph" x="572" y="18">END OF SUPPORT</text><text class="phs" x="572" y="33">plan the exit</text>
+  <g fill="#9C3396">
+    <circle cx="11" cy="58" r="2.6"/><circle cx="11" cy="73" r="2.6"/><circle cx="11" cy="88" r="2.6"/><circle cx="11" cy="103" r="2.6"/><circle cx="11" cy="118" r="2.6"/><circle cx="11" cy="133" r="2.6"/><circle cx="11" cy="148" r="2.6"/><circle cx="11" cy="163" r="2.6"/>
+  </g>
+  <text class="act" x="19" y="62">Security plan</text><text class="act" x="19" y="77">Threat modeling</text><text class="act" x="19" y="92">Security risk assessment</text><text class="act" x="19" y="107">Architecture views</text><text class="act" x="19" y="122">Requirements and controls</text><text class="act" x="19" y="137">Testing and pen testing</text><text class="act" x="19" y="152">SBOM</text><text class="act" x="19" y="167">Traceability</text>
+  <g fill="#7E44A9">
+    <circle cx="193" cy="58" r="2.6"/><circle cx="193" cy="73" r="2.6"/><circle cx="193" cy="88" r="2.6"/><circle cx="193" cy="103" r="2.6"/><circle cx="193" cy="118" r="2.6"/><circle cx="193" cy="133" r="2.6"/>
+  </g>
+  <text class="act" x="201" y="62">Submission content</text><text class="act" x="201" y="77">Security labeling</text><text class="act" x="201" y="92">MDS2 form</text><text class="act" x="201" y="107">Customer documents</text><text class="act" x="201" y="122">SBOM for customers</text><text class="act" x="201" y="137">Monitoring starts</text>
+  <g fill="#197EC6">
+    <circle cx="375" cy="58" r="2.6"/><circle cx="375" cy="73" r="2.6"/><circle cx="375" cy="88" r="2.6"/><circle cx="375" cy="103" r="2.6"/><circle cx="375" cy="118" r="2.6"/><circle cx="375" cy="133" r="2.6"/><circle cx="375" cy="148" r="2.6"/><circle cx="375" cy="163" r="2.6"/>
+  </g>
+  <text class="act" x="383" y="62">Vulnerability monitoring</text><text class="act" x="383" y="77">CVD and a PSIRT</text><text class="act" x="383" y="92">Assess risk to patients</text><text class="act" x="383" y="107">Patches and updates</text><text class="act" x="383" y="122">Customer communication</text><text class="act" x="383" y="137">Regulator reporting</text><text class="act" x="383" y="152">ISAO information sharing</text><text class="act" x="383" y="167">Incident response</text>
+  <g fill="#1999B2">
+    <circle cx="557" cy="58" r="2.6"/><circle cx="557" cy="73" r="2.6"/><circle cx="557" cy="88" r="2.6"/><circle cx="557" cy="103" r="2.6"/><circle cx="557" cy="118" r="2.6"/><circle cx="557" cy="133" r="2.6"/><circle cx="557" cy="148" r="2.6"/>
+  </g>
+  <text class="act" x="565" y="62">Announce dates early</text><text class="act" x="565" y="77">Final updates</text><text class="act" x="565" y="92">Compensating controls</text><text class="act" x="565" y="107">Customer guidance</text><text class="act" x="565" y="122">Plan replacement</text><text class="act" x="565" y="137">Secure decommissioning</text><text class="act" x="565" y="152">Shared responsibility</text>
+  <rect class="outbg" x="6" y="176" width="162" height="66" rx="4"/>
+  <text class="outl" x="13" y="191">KEY DELIVERABLES</text><text class="out" x="13" y="207">Threat model, risk file</text><text class="out" x="13" y="222">Test reports and SBOM</text><text class="out" x="13" y="237">Traceability matrix</text>
+  <rect class="outbg" x="188" y="176" width="162" height="66" rx="4"/>
+  <text class="outl" x="195" y="191">KEY DELIVERABLES</text><text class="out" x="195" y="207">The submission</text><text class="out" x="195" y="222">Labeling and MDS2</text><text class="out" x="195" y="237">Customer SBOM</text>
+  <rect class="outbg" x="370" y="176" width="162" height="66" rx="4"/>
+  <text class="outl" x="377" y="191">KEY DELIVERABLES</text><text class="out" x="377" y="207">Validated updates</text><text class="out" x="377" y="222">Customer advisories</text><text class="out" x="377" y="237">Regulator reports</text>
+  <rect class="outbg" x="552" y="176" width="162" height="66" rx="4"/>
+  <text class="outl" x="559" y="191">KEY DELIVERABLES</text><text class="out" x="559" y="207">End-of-support notice</text><text class="out" x="559" y="222">Final updates</text><text class="out" x="559" y="237">Data-wiping instructions</text>
+  <rect class="band" x="0" y="254" width="720" height="24" rx="5"/>
+  <text class="bandt" x="360" y="270" text-anchor="middle">In every phase: security risk management, the SBOM and the design history stay current</text>
+  <path class="loop" d="M451,278 V294 H87 V285"/>
+  <path d="M81,287 L87,279 L93,287 Z" fill="#9C3396"/>
+  <text class="loopt" x="269" y="309" text-anchor="middle">Postmarket findings feed the next design change and the next release</text>
+</svg>
+
+<div class="cols">
+  <div class="box note small"><b>The phases are linked.</b> A device never designed for updates can't be patched; a team that never recorded its software can't tell whether a new vulnerability affects it.</div>
+  <div class="box note small"><b>The lifecycle is a loop.</b> A postmarket fix or feature is a design change: it goes back through threat modeling, testing and documentation.</div>
+</div>
+
+<h2>Premarket deliverables checklist</h2>
+<p class="small">Premarket work produces a product secure enough for its intended use, and the evidence that shows it to regulators, hospital customers and future colleagues. Produce the evidence during design: reconstructing it later is slow and usually reveals gaps.</p>
+<ul class="checks deliv">
+  <li><b>Security plan:</b> who does which security activities, when, and what they deliver. <span class="eg">CardiaPace schedules threat modeling before design freeze, not after.</span></li>
+  <li><b>Threat model and security risk assessment:</b> what could go wrong, how exploitable it is, how bad for patients, what to do. <span class="eg">FlowGuard: “What if someone replaces the drug library?”</span></li>
+  <li><b>Architecture views:</b> components, connections, data flows and trust boundaries (where control changes hands). <span class="eg">DermaLens: app, cloud, model, dashboard, and who controls each.</span></li>
+  <li><b>Security requirements and controls:</b> testable requirements that answer the significant threats. <span class="eg">OrionArm remote service needs strong login and hospital approval per session.</span></li>
+  <li><b>Security testing:</b> evidence the controls work, plus penetration testing (skilled testers trying to break in). <span class="eg">An independent pen test of the CardiaPace home transmitter.</span></li>
+  <li><b>SBOM:</b> software components with versions and whether each is still supported by its supplier. <span class="eg">DermaLens records every open-source library in app and cloud.</span></li>
+  <li><b>Labeling and customer documents:</b> secure setup, network needs, how updates arrive, support period, and the <b>MDS2</b> form hospitals use to compare devices. <span class="eg">Hospital IT reads FlowGuard's MDS2.</span></li>
+  <li><b>Traceability:</b> each threat linked to its control, the test that verifies it, and the residual risk; gaps are often a reviewer's first question.</li>
+</ul>
+
+<div class="box pro small">
+  <h3>The US submission for a cyber device</h3>
+  <p>The law requires a plan to monitor and address postmarket vulnerabilities (including coordinated vulnerability disclosure), processes that give reasonable assurance the device is secure, and an SBOM. FDA's guidance adds the SPDF, threat model and risk assessment, architecture views, controls, testing evidence, labeling and a cybersecurity management plan. Other regulators ask for similar material. Clearance starts the longest phase; it isn't the finish line.</p>
+</div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 04 · CC BY 4.0</span><span>Page 1 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<h2>Postmarket: watch, assess, fix and tell</h2>
+<p class="small">A product's security changes after release even if its code doesn't. Findings arrive from <b>vulnerability monitoring</b> (checking the SBOM against vulnerability databases and supplier advisories), from researchers through <b>coordinated vulnerability disclosure (CVD)</b>, and from complaints and service calls. Many organizations route them all to a <b>product security incident response team (PSIRT)</b>.</p>
+
+<div class="cols" style="grid-template-columns:1.05fr 1fr">
+  <div>
+    <h3>Handling a vulnerability report</h3>
+    <p style="font-size:8pt;color:var(--muted)">Example: a researcher reports that FlowGuard pumps accept unsigned drug-library files.</p>
+    <ol class="steps">
+      <li><b>Acknowledge</b> the report to the researcher and open a case.</li>
+      <li><b>Triage:</b> reproduce it; find affected versions and components.</li>
+      <li><b>Assess</b> exploitability and patient harm: controlled or uncontrolled?</li>
+      <li><b>Develop and validate a fix</b>, plus interim measures if needed.</li>
+      <li><b>Coordinate disclosure:</b> agree timing with the researcher, publish customer guidance, report to regulators.</li>
+      <li><b>Release the update</b>, help hospitals deploy it, track patched units.</li>
+      <li><b>Close the loop:</b> update the threat model, SBOM and design practices.</li>
+    </ol>
+    <p style="font-size:8pt;color:var(--muted)">Steps often overlap: with uncontrolled risk, interim guidance may go out before the full fix, and regulator reporting runs alongside.</p>
+  </div>
+  <div>
+    <h3>Controlled or uncontrolled risk?</h3>
+    <p class="small">Not every vulnerability is an emergency. FDA's postmarket guidance sorts assessed risk into two kinds:</p>
+    <div class="risk">
+      <div class="box ok"><h3>Controlled</h3><p>Remaining risk of patient harm is <b>acceptable</b> with the controls in place.</p><p>Record the assessment; fix it in a <b>routine update</b>. Generally not reportable to FDA.</p></div>
+      <div class="box warn"><h3>Uncontrolled</h3><p>Remaining risk of patient harm is <b>unacceptable</b>.</p><p><b>Prompt remediation</b>, faster and wider customer communication, often interim measures; generally reportable.</p></div>
+    </div>
+    <p style="font-size:8pt;color:var(--muted)">FDA eases reporting for an uncontrolled risk if there are no known serious adverse events or deaths, customers are told within 30 days, it is fixed or mitigated within 60 days, and the manufacturer is in an ISAO (information sharing and analysis organization) such as Health-ISAC. Regulatory decides what is reportable where.</p>
+  </div>
+</div>
+
+<div class="box pro small">
+  <b>Patient safety lens.</b> A patch is a clinical decision too: updating a pump mid-infusion, or an implant in a fragile patient, carries its own risk. Interim measures, such as restricting a network connection, must not create a new hazard.
+</div>
+
+<h2>How fast can a fix reach patients?</h2>
+<table class="t">
+  <thead><tr><th style="width:22%">DermaLens app</th><th style="width:26%">FlowGuard pumps</th><th style="width:22%">OrionArm robot</th><th>CardiaPace implant system</th></tr></thead>
+  <tbody><tr><td>An app update can reach users within days.</td><td>Scheduled with each hospital's biomedical engineers.</td><td>Planned around surgery lists.</td><td>The transmitter updates itself; the implant usually needs a clinic visit.</td></tr></tbody>
+</table>
+<p style="font-size:8pt;color:var(--muted)">Every update is a device change, verified and validated first. US law expects updates on a regular cycle for known unacceptable vulnerabilities, and out of cycle, as soon as possible, for critical ones.</p>
+
+<h2>End of support and legacy devices</h2>
+<p class="small"><b>End of life:</b> the manufacturer stops selling a product. <b>End of support:</b> it stops providing service and support, including security updates. A <b>legacy device</b> can no longer be reasonably protected against current threats, yet is often still in clinical use. OrionArm's commercial operating system will typically get security updates for far fewer years than its 15-year service life.</p>
+<div class="eos">
+  <div style="--c:#9C3396"><span class="tag">Design</span><h4>Plan the exit early</h4>Choose long-supported components, make the operating system upgradeable, record support dates in the SBOM.</div>
+  <div style="--c:#197EC6"><span class="tag">In service</span><h4>Tell customers in time</h4>Announce dates early, offer upgrades, advise on <b>compensating controls</b> such as network separation.</div>
+  <div style="--c:#1999B2"><span class="tag">Retirement</span><h4>Leave nothing behind</h4>Give final updates and instructions for wiping patient data, credentials and network settings before disposal or resale.</div>
+</div>
+<div class="box tint small">
+  <b>Shared responsibility.</b> Manufacturers communicate support timelines and options clearly; hospitals keep device inventories, apply compensating controls and budget for replacements. A hospital can't patch an operating system the manufacturer hasn't validated, and a manufacturer can't segment a hospital's network. The goal is to keep the remaining risk visible and controlled.
+</div>
+<p class="fine">Regulatory points current as of October 2026. All four devices are fictional. Training material, not legal or regulatory advice.</p>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 04 · CC BY 4.0</span><span>Page 2 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+</body>
+</html>

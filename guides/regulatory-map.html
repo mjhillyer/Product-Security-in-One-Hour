@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="author" content="Matt Hillyer">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="guide.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 24 24%22><rect width=%2224%22 height=%2224%22 rx=%225%22 fill=%22%23197EC6%22/><path d=%22M12 4 5 7v4.6c0 4.4 3 7.6 7 8.4 4-0.8 7-4 7-8.4V7l-7-3Z%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/><circle cx=%2212%22 cy=%2211.6%22 r=%222.4%22 fill=%22none%22 stroke=%22white%22 stroke-width=%221.8%22/></svg>">
+<title>Global Regulations &amp; Standards at a Glance | Product Security in One Hour</title>
+<meta name="description" content="Regulators in every major market now expect medical devices to be secure, and standards describe how to get there. Use this map to recognize the names, see which are binding, and know who to ask.">
+<style>
+.asof{display:flex;gap:9pt;align-items:center;margin:0 0 9pt;}
+.asof .when{flex:none;font-size:7.4pt;font-weight:800;letter-spacing:.1em;text-transform:uppercase;line-height:1.25;color:#fff;background:#d97706;border-radius:5pt;padding:5pt 7pt;text-align:center;}
+.asof p{margin:0;}
+.t.rm{font-size:8pt;line-height:1.28;}
+.t.rm td{padding:3pt 5pt;}
+.t.rm td.k{white-space:normal;}
+.pill{display:inline-block;font-size:6.6pt;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:1pt 4pt;border-radius:3pt;white-space:nowrap;}
+.p-law{background:#233884;color:#fff;}
+.p-gd{background:#e0eefa;color:#145f96;}
+.p-dr{background:#f3e8f5;color:#7a2775;}
+.p-vol{background:#dff3f3;color:#0e6470;}
+.p-cust{background:#fff1e0;color:#9a4d06;}
+.layers4{display:grid;grid-template-columns:repeat(4,1fr);gap:6pt;}
+.layers4 .box{padding:6pt 7pt;font-size:8.2pt;line-height:1.3;}
+.layers4 p{margin:3pt 0 0;}
+.layers4 .ex{color:var(--muted);font-size:7.8pt;}
+.box.pro ul{columns:2;column-gap:14pt;}
+.box.pro li{break-inside:avoid;}
+.mk{gap:0 14pt;}
+.mk h2{margin-top:6pt;}
+.inst{padding:3pt 0;border-bottom:1px solid var(--line);font-size:8pt;line-height:1.28;}
+.inst:last-child{border-bottom:0;}
+.inst .hd{display:flex;flex-wrap:wrap;align-items:baseline;gap:1pt 5pt;margin-bottom:1pt;}
+.inst .hd b{color:var(--ink);font-size:8.6pt;}
+.inst .st{display:inline;font-size:7.2pt;font-weight:600;color:var(--dim);}
+.inst p{margin:0;}
+.who{color:var(--dim);font-size:7.5pt;}
+.inst.def{background:var(--soft);border:none;border-radius:6px;padding:5pt 7pt;margin-top:4pt;}
+.small{font-size:8.3pt;}
+.small ul{margin:0;}
+@media screen and (max-width:860px){.layers4{grid-template-columns:1fr 1fr;}.box.pro ul{columns:1;}.asof{flex-direction:column;align-items:flex-start;}}
+</style>
+</head>
+<body>
+<div class="toolbar">
+  <a href="../guides.html">← All guides</a>
+  <span class="tb-title">Global Regulations &amp; Standards at a Glance</span>
+  <span class="tb-actions"><a class="tb-btn" href="pdf/regulatory-map.pdf" download>Download PDF</a><button class="tb-btn" type="button" onclick="window.print()">Print</button></span>
+</div>
+<section class="sheet">
+  <header class="g-head">
+    <div>
+      <div class="g-kicker">Product Security in One Hour · Reference guide 03</div>
+      <h1>Global Regulations &amp; Standards at a Glance</h1>
+      <p class="g-sub">Regulators in every major market now expect medical devices to be secure, and standards describe how to get there. Use this map to recognize the names, see which are binding, and know who to ask. You don't need to memorize it.</p>
+    </div>
+    <span class="g-mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.1" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4 6.5v5c0 5 3.4 8.6 8 9.5 4.6-.9 8-4.5 8-9.5v-5L12 3Z"/><circle cx="12" cy="11.5" r="2.6"/><path d="M12 6.6v1.6M12 14.8v1.6M7.1 11.5h1.6M15.3 11.5h1.6"/></svg></span>
+  </header>
+  <div class="g-body">
+<div class="box warn asof"><span class="when">Current as of<br>October 2026</span>
+  <p><b>This area changes often.</b> Statuses and dates were checked in October 2026 and will move; your regulatory team tracks the current versions for your products. <b>Training material, not legal or regulatory advice:</b> your regulatory team owns interpretation.</p>
+</div>
+
+<h2>How the layers fit</h2>
+<div class="layers4">
+  <div class="box"><span class="pill p-law">Law and regulation</span><p><b>Binding.</b> Says what must be achieved.</p><p class="ex">US Section 524B · QMSR<br>EU MDR and IVDR</p></div>
+  <div class="box"><span class="pill p-gd">Guidance</span><p><b>Regulator's current thinking.</b> Not binding, but it is what reviewers look for.</p><p class="ex">FDA premarket and postmarket guidance · MDCG 2019-16</p></div>
+  <div class="box"><span class="pill p-vol">Standards</span><p><b>Consensus on how.</b> Voluntary; regulators recognize many.</p><p class="ex">IEC 81001-5-1 · AAMI SW96 · ISO 14971 · ISO 13485</p></div>
+  <div class="box"><span class="pill p-cust">Your quality system</span><p><b>Makes it daily work.</b></p><p class="ex">Design controls · risk management · supplier controls · complaints and CAPA</p></div>
+</div>
+
+<div class="cols mk">
+<div>
+<h2>United States · FDA</h2>
+  <div class="inst"><div class="hd"><b>Section 524B, FD&amp;C Act</b><span class="pill p-law">Law</span><span class="st">Since March 2023</span></div><p>Every cyber device submission must include a plan to monitor and address postmarket vulnerabilities, with coordinated vulnerability disclosure (CVD); processes that give reasonable assurance of security, including regular updates and fast patches for critical problems; and a software bill of materials (SBOM). Since October 2023, submissions missing this can be refused.</p></div>
+  <div class="inst"><div class="hd"><b>Premarket cybersecurity guidance</b><span class="pill p-gd">Guidance</span><span class="st">2023; updated 2025; reissued Feb 2026</span></div><p>A Secure Product Development Framework (SPDF) inside the quality system; threat modeling and security risk management linked to safety risk; architecture views; security controls; testing; an SBOM with support status; labeling; a cybersecurity management plan.</p></div>
+  <div class="inst"><div class="hd"><b>Postmarket cybersecurity guidance</b><span class="pill p-gd">Guidance</span><span class="st">Dec 2016; still current</span></div><p>Monitor vulnerabilities and judge whether the risk of patient harm is <b>controlled</b> (fix in routine updates) or <b>uncontrolled</b> (fix promptly; generally reportable, with reporting relief when customers are told quickly, the fix is fast, and the manufacturer takes part in an information sharing and analysis organization).</p></div>
+  <div class="inst"><div class="hd"><b>QMSR (Quality Management System Regulation)</b><span class="pill p-law">Regulation</span><span class="st">Effective Feb 2026</span></div><p>Incorporates ISO 13485. No cyber clause, but FDA maps security work onto design, risk management, supplier controls and CAPA.</p></div>
+  <div class="inst"><div class="hd"><b>AI-enabled device software guidance</b><span class="pill p-dr">Draft</span><span class="st">Jan 2025</span></div><p>For AI devices, covers AI-specific threats such as poisoned training data and manipulated inputs.</p></div>
+  <div class="inst def"><p><b>Cyber device</b> (Section 524B): includes software, can connect to the internet, and could be vulnerable to cyber threats. FDA reads this broadly: an indirect path through a phone, transmitter, hospital network or service port can count.</p></div>
+</div>
+<div>
+<h2>European Union</h2>
+  <div class="inst"><div class="hd"><b>MDR and IVDR: general safety and performance requirements (GSPRs)</b><span class="pill p-law">Regulation</span><span class="st">In force</span></div><p>Software developed to the state of the art, with risk management that includes information security; minimum IT security requirements stated in the instructions for use; protection, as far as possible, against unauthorized access.</p></div>
+  <div class="inst"><div class="hd"><b>MDCG 2019-16</b><span class="pill p-gd">Guidance</span><span class="st">Rev.1, July 2020</span></div><p>How to meet the GSPRs: secure design, operating environment, testing, postmarket vigilance, and joint responsibility with the hospitals that run devices.</p></div>
+  <div class="inst"><div class="hd"><b>Cyber Resilience Act (CRA)</b><span class="pill p-law">Regulation</span><span class="st">Reporting Sep 2026; full Dec 2027</span></div><p>Excludes MDR and IVDR devices, but reaches suppliers' software components, gateways and non-medical accessories sold in the EU.</p></div>
+  <div class="inst"><div class="hd"><b>NIS2 Directive</b><span class="pill p-law">Directive</span><span class="st">National laws from Oct 2024</span></div><p>About the company, not the product: organizational cyber risk management and incident reporting for manufacturers above size thresholds.</p></div>
+  <div class="inst"><div class="hd"><b>AI Act</b><span class="pill p-law">Regulation</span><span class="st">Device AI duties moved to 2028</span></div><p>For AI in devices: accuracy, robustness and cybersecurity, including resistance to poisoned data and manipulated inputs.</p></div>
+  <div class="inst"><div class="hd"><b>MDR and IVDR revision</b><span class="pill p-dr">Proposal</span><span class="st">Under negotiation</span></div><p>Would make cybersecurity explicit in the GSPRs and add reporting of actively exploited vulnerabilities, in line with the CRA.</p></div>
+</div>
+</div>
+
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 03 · CC BY 4.0</span><span>Page 1 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+<section class="sheet">
+  <div class="g-body">
+<h2>Other major markets and IMDRF</h2>
+<div class="cols mk">
+<div>
+  <div class="inst"><div class="hd"><b>Canada · Health Canada</b><span class="pill p-gd">Guidance</span><span class="st">2019</span></div><p>Cyber evidence in higher-class licence applications: risk analysis, a bill of materials, testing, labeling, a traceability matrix and a plan for monitoring new threats.</p></div>
+  <div class="inst"><div class="hd"><b>United Kingdom · MHRA</b><span class="pill p-dr">Draft</span><span class="st">2026 amendments</span></div><p>Draft amendments would align UK requirements with the EU GSPRs; MHRA runs a cybersecurity workstream for software and AI.</p></div>
+  <div class="inst"><div class="hd"><b>Australia · TGA</b><span class="pill p-law">Regulation</span> <span class="pill p-gd">Guidance</span><span class="st">Guidance 2022</span></div><p>Manage cyber risk across the lifecycle and monitor new vulnerabilities, to meet the Essential Principles.</p></div>
+</div>
+<div>
+  <div class="inst"><div class="hd"><b>Japan · MHLW/PMDA</b><span class="pill p-law">Regulation</span><span class="st">Mandatory since Apr 2024</span></div><p>Cyber risk management under the Essential Principles; conformance to JIS T 81001-5-1 (identical to IEC 81001-5-1) is the accepted route.</p></div>
+  <div class="inst"><div class="hd"><b>China · NMPA</b><span class="pill p-gd">Guidance</span><span class="st">2022 revision</span></div><p>Cybersecurity documentation for registration, update management, a component list, vulnerability assessment and testing.</p></div>
+  <div class="inst"><div class="hd"><b>IMDRF · International Medical Device Regulators Forum</b><span class="pill p-vol">Shared principles</span><span class="st">2020; 2023</span></div><p>Its 2020 cybersecurity principles are the baseline (lifecycle, shared responsibility, coordinated disclosure, SBOMs, legacy devices); 2023 documents add detail on legacy devices and SBOMs. Not law, but national rules borrow from it.</p></div>
+</div>
+</div>
+
+<p class="small"><b>Also moving:</b> Brazil (a non-binding guide), Singapore (a voluntary cybersecurity label for devices), South Korea (a cybersecurity review guideline). One market's approval doesn't cover another, but good evidence travels.</p>
+
+<div class="box note small" style="margin:4pt 0 2pt">
+  <h3>The good news: expectations converge</h3>
+  <p>Almost every regulator asks for: security built into design, inside the quality system · security risk linked to safety risk · security testing · an SBOM · a plan for vulnerabilities after release · clear security information for customers.</p>
+</div>
+
+<h2>Standards and frameworks <span style="font-weight:500;font-size:8.3pt;color:var(--muted);letter-spacing:0">· most are voluntary, but regulators recognize many</span></h2>
+<div class="cols mk">
+<div>
+  <div class="inst"><div class="hd"><b>ISO 13485</b><span class="pill p-law">Required</span><span class="st">in the US, via the QMSR</span></div><p>Quality management system standard; security processes live inside it. <span class="who">Used by: Quality; every team</span></p></div>
+  <div class="inst"><div class="hd"><b>ISO 14971</b><span class="pill p-vol">Voluntary</span></div><p>Safety risk management; its scope includes data and systems security. <span class="who">Used by: Risk, quality, clinical</span></p></div>
+  <div class="inst"><div class="hd"><b>ANSI/AAMI SW96</b><span class="pill p-vol">Voluntary</span><span class="st">FDA-recognized</span></div><p>Security risk management run alongside ISO 14971 (2023). <span class="who">Used by: Product security, risk</span></p></div>
+  <div class="inst"><div class="hd"><b>AAMI TIR57, TIR97</b><span class="pill p-vol">Voluntary</span></div><p>Security risk reports; SW96 has largely replaced TIR57. TIR97 covers postmarket. <span class="who">Used by: Product security, PSIRT</span></p></div>
+  <div class="inst"><div class="hd"><b>IEC 81001-5-1</b><span class="pill p-vol">Voluntary</span><span class="st">FDA-recognized; Japan's route</span></div><p>Security activities across the health software lifecycle, from design to testing and updates (2021). <span class="who">Used by: Engineering, product security</span></p></div>
+  <div class="inst"><div class="hd"><b>IEC 62443-4-1, 4-2</b><span class="pill p-vol">Voluntary</span><span class="st">supports device claims</span></div><p>Industrial standards for secure development and component security requirements. <span class="who">Used by: Engineering, suppliers</span></p></div>
+  <div class="inst"><div class="hd"><b>ISO/IEC 29147, 30111</b><span class="pill p-vol">Voluntary</span><span class="st">referenced by FDA</span></div><p>Vulnerability disclosure (receiving, publishing) and vulnerability handling (investigating, fixing). <span class="who">Used by: PSIRT</span></p></div>
+</div>
+<div>
+  <div class="inst"><div class="hd"><b>SPDX, CycloneDX</b><span class="st">An SBOM is</span><span class="pill p-law">Required</span><span class="st">in the US; the format is your choice</span></div><p>Machine-readable SBOM formats that tools check against vulnerability databases. <span class="who">Used by: Engineering build tools</span></p></div>
+  <div class="inst"><div class="hd"><b>CVSS, VEX</b><span class="pill p-vol">Voluntary</span></div><p>CVSS scores severity (FDA qualified a MITRE rubric for clinical use); VEX says whether a known flaw affects a product. <span class="who">Used by: PSIRT; customers read VEX</span></p></div>
+  <div class="inst"><div class="hd"><b>MDS2 form</b><span class="pill p-cust">Customer</span><span class="st">not a regulation</span></div><p>Manufacturer Disclosure Statement for Medical Device Security; hospitals compare devices with it. <span class="who">Used by: Hospital buyers; sales</span></p></div>
+  <div class="inst"><div class="hd"><b>HSCC JSP2, MC2</b><span class="pill p-vol">Voluntary</span></div><p>Health Sector Coordinating Council: Joint Security Plan (secure-by-design framework) and Model Contract (who owns which cyber duties). <span class="who">Used by: Program leads; sales, procurement</span></p></div>
+  <div class="inst"><div class="hd"><b>NIST SSDF</b><span class="pill p-vol">Voluntary</span></div><p>Secure Software Development Framework: secure development practices. <span class="who">Used by: Software engineering</span></p></div>
+  <div class="inst"><div class="hd"><b>CISA Secure by Design</b><span class="pill p-vol">Voluntary</span></div><p>Principles and a pledge for software vendors generally; not device law. <span class="who">Used by: Software vendors</span></p></div>
+  <div class="inst"><div class="hd"><b>ISAOs (Health-ISAC)</b><span class="pill p-vol">Voluntary</span><span class="st">eases FDA reporting terms</span></div><p>Information Sharing and Analysis Organizations share threat information. <span class="who">Used by: PSIRT</span></p></div>
+</div>
+</div>
+<div class="box pro small" style="margin-top:6pt">
+    <h3>What this means for a product team</h3>
+    <ul>
+      <li>Build one program on recognized standards; the same evidence feeds FDA, EU and other submissions.</li>
+      <li>Security deliverables are schedule items: a US cyber device submission without them can be refused.</li>
+      <li>Know what applies to what: FDA rules and the MDR/IVDR cover the product; NIS2 the company; the CRA mostly suppliers; the AI Act AI features.</li>
+      <li>Ask regulatory which markets you sell in and which standards you declare. Current as of October 2026; not legal or regulatory advice.</li>
+    </ul>
+  </div>
+  </div>
+  <footer class="g-foot">
+    <div><span>Product Security in One Hour · Guide 03 · CC BY 4.0</span><span>Page 2 of 2</span></div>
+    <div><span>Free course: mjhillyer.github.io/Product-Security-in-One-Hour</span><span>In-depth team training: <b>Matt Hillyer LLC</b> · matt@matthillyer.io</span></div>
+  </footer>
+</section>
+</body>
+</html>
